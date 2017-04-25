@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>rhei</display-name>
+	<welcome-file-list>
+		<welcome-file>jsp/login.jsp</welcome-file>
+	</welcome-file-list>
+	<session-config>
+		<session-timeout>90</session-timeout>
+	</session-config>
+
+
+
+
+	<!-- <servlet> -->
+	<!-- <servlet-name>Log4JInitServlet</servlet-name> -->
+	<!-- <servlet-class>ve.org.bcv.rhei.util.Log4JInitServlet</servlet-class> -->
+	<!-- <load-on-startup>1</load-on-startup> -->
+	<!-- </servlet> -->
+	<servlet>
+		<description></description>
+		<display-name>Autenticar</display-name>
+		<servlet-name>Autenticar</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.util.Autenticar</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Autenticar</servlet-name>
+		<url-pattern>/Autenticar</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description></description>
+		<display-name>AutenticarAutomatic</display-name>
+		<servlet-name>AutenticarAutomatic</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.util.AutenticarAutomatic</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AutenticarAutomatic</servlet-name>
+		<url-pattern>/autenticarAutomatic</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
+		<description></description>
+		<display-name>CerrarSesionServlet</display-name>
+		<servlet-name>CerrarSesionServlet</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.CerrarSesionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CerrarSesionServlet</servlet-name>
+		<url-pattern>/CerrarSesionServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>BenefScolarControlador</display-name>
+		<servlet-name>BenefScolarControlador</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.BenefScolarControlador</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BenefScolarControlador</servlet-name>
+		<url-pattern>/benefScolarControlador</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>PeriodoScolarControlador</display-name>
+		<servlet-name>PeriodoScolarControlador</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.PeriodoScolarControlador</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PeriodoScolarControlador</servlet-name>
+		<url-pattern>/periodoScolarControlador</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>ReportePagosControlador</display-name>
+		<servlet-name>ReportePagosControlador</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.ReportePagosControlador</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReportePagosControlador</servlet-name>
+		<url-pattern>/reportePagosControlador</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description></description>
+		<display-name>ReporteConsultaIndividualControlador</display-name>
+		<servlet-name>ReporteConsultaIndividualControlador</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.ReporteConsultaIndividualControlador</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReporteConsultaIndividualControlador</servlet-name>
+		<url-pattern>/reporteConsultaIndividualControlador</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
+		<description></description>
+		<display-name>ReporteDefinitivoTransitorioControlador</display-name>
+		<servlet-name>ReporteDefinitivoTransitorioControlador</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.ReporteDefinitivoTransitorioControlador</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReporteDefinitivoTransitorioControlador</servlet-name>
+		<url-pattern>/reporteDefinitivoTransitorioControlador</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<description></description>
+		<display-name>benefAndCentrEducControlador</display-name>
+		<servlet-name>benefAndCentrEducControlador</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.BenefAndCentrEducControlador</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>benefAndCentrEducControlador</servlet-name>
+		<url-pattern>/benefAndCentrEducControlador</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>benefCodPeriodoPagoControlador</display-name>
+		<servlet-name>benefCodPeriodoPagoControlador</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.BenefCodPeriodoPagoControlador</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>benefCodPeriodoPagoControlador</servlet-name>
+		<url-pattern>/benefCodPeriodoPagoControlador</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>solicitudDesincorporarControlador</display-name>
+		<servlet-name>solicitudDesincorporarControlador</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.SolicitudDesincorporarControlador</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>solicitudDesincorporarControlador</servlet-name>
+		<url-pattern>/solicitudDesincorporarControlador</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>solicitudControladorIncluir</display-name>
+		<servlet-name>solicitudControladorIncluir</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.SolicitudControladorIncluir</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>solicitudControladorIncluir</servlet-name>
+		<url-pattern>/solicitudControladorIncluir</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>solicitudControladorConsultar</display-name>
+		<servlet-name>solicitudControladorConsultar</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.SolicitudControladorConsultar</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>solicitudControladorConsultar</servlet-name>
+		<url-pattern>/solicitudControladorConsultar</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>solicitudControladorActualizar</display-name>
+		<servlet-name>solicitudControladorActualizar</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.SolicitudControladorActualizar</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>solicitudControladorActualizar</servlet-name>
+		<url-pattern>/solicitudControladorActualizar</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>pagosControladorReg</display-name>
+		<servlet-name>pagosControladorReg</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.PagosControladorReg</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>pagosControladorReg</servlet-name>
+		<url-pattern>/pagosControladorReg</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>pagosControladorConsultar</display-name>
+		<servlet-name>pagosControladorConsultar</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.PagosControladorConsultar</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>pagosControladorConsultar</servlet-name>
+		<url-pattern>/pagosControladorConsultar</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>pagosControladorActualizar</display-name>
+		<servlet-name>pagosControladorActualizar</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.PagosControladorActualizar</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>pagosControladorActualizar</servlet-name>
+		<url-pattern>/pagosControladorActualizar</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>ParametroControlador</display-name>
+		<servlet-name>ParametroControlador</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.ParametroControlador</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ParametroControlador</servlet-name>
+		<url-pattern>/ParametroControlador</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description>Manejando periodo escolar</description>
+		<display-name>ManejadorPeridEsclar</display-name>
+		<servlet-name>ManejadorPeridEsclar</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.ManejadorPeridEsclarCtrl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ManejadorPeridEsclar</servlet-name>
+		<url-pattern>/ManejadorPeridEsclar</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description></description>
+		<display-name>IntitucionCtrl</display-name>
+		<servlet-name>intitucionCtrl</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.controlador.IntitucionCtrl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>intitucionCtrl</servlet-name>
+		<url-pattern>/intitucionCtrl</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
+		<description></description>
+		<display-name>InstitucionAjax</display-name>
+		<servlet-name>institucionAjax</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.ajax.InstitucionAjax</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>institucionAjax</servlet-name>
+		<url-pattern>/institucionAjax</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>facturasAjax</display-name>
+		<servlet-name>facturasAjax</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.ajax.FacturasAjax</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>facturasAjax</servlet-name>
+		<url-pattern>/facturasAjax</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>reporteAjaxServlet</display-name>
+		<servlet-name>reporteAjaxServlet</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.ajax.ReporteAjaxServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>reporteAjaxServlet</servlet-name>
+		<url-pattern>/reporteAjaxServlet</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<description></description>
+		<display-name>reporteValidarAjaxServlet</display-name>
+		<servlet-name>reporteValidarAjaxServlet</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.ajax.ReporteValidarAjaxServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>reporteValidarAjaxServlet</servlet-name>
+		<url-pattern>/reporteValidarAjaxServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>UploadFile</servlet-name>
+		<servlet-class>com.fileupload.UploadFile</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UploadFile</servlet-name>
+		<url-pattern>/UploadFile</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>DocumentOpen</servlet-name>
+		<servlet-class>com.download.DocumentOpen</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DocumentOpen</servlet-name>
+		<url-pattern>/documentOpen</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>reporteNumSolicitudServlet</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.open.doc.ReporteNumSolicitudServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>reporteNumSolicitudServlet</servlet-name>
+		<url-pattern>/reporteNumSolicitudServlet</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
+		<description></description>
+		<display-name>documentOpenRporte</display-name>
+		<servlet-name>documentOpenRporte</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.open.doc.DocumentOpenRporte</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>documentOpenRporte</servlet-name>
+		<url-pattern>/documentOpenRporte</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description></description>
+		<display-name>DocumentOpenPagosTributosRporte</display-name>
+		<servlet-name>DocumentOpenPagosTributosRporte</servlet-name>
+		<servlet-class>ve.org.bcv.rhei.open.doc.DocumentOpenPagosTributosRporte</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DocumentOpenPagosTributosRporte</servlet-name>
+		<url-pattern>/documentOpenPagosTributosRporte</url-pattern>
+	</servlet-mapping>
+
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+	</listener>
+
+</web-app>

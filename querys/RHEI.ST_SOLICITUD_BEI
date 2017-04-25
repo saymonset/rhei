@@ -1,0 +1,67 @@
+ALTER TABLE RHEI.ST_SOLICITUD_BEI
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE RHEI.ST_SOLICITUD_BEI CASCADE CONSTRAINTS;
+
+CREATE TABLE RHEI.ST_SOLICITUD_BEI
+(
+  CO_STATUS  VARCHAR2(1 CHAR)                   NOT NULL,
+  NB_STATUS  VARCHAR2(60 CHAR)                  NOT NULL,
+  IN_ACTIVO  VARCHAR2(2 CHAR)                   DEFAULT 'A'                   NOT NULL
+)
+TABLESPACE TSDATA01_128K
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+COMPRESS FOR OLTP 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE RHEI.ST_SOLICITUD_BEI IS 'Contiene la  información correspondiente al estatus de una solicitud. Proveniente de la unidad de Bienestar Social.  Su finalidad es la de llevar un control del estado de las solicitudes realizadas para el otorgamiento del beneficio de educación inicial. Información originada en el formato o planilla que maneja la unidad de trabajo social para registrar las solicitudes del beneficio. Su periodicidad de actualización es anual.Su frecuencia es 1 vez. .No es Interfaz.';
+
+COMMENT ON COLUMN RHEI.ST_SOLICITUD_BEI.CO_STATUS IS ' Contiene el código, unívoco, del status de la solicitud.Proveniente de la unidad de Bienestar Social. Con el objetivo de llevar un registro temporal de las solicitudes.Los posibles valores son: A: Activo, R: Renovado  D: Desincorporado  C: Actualizado';
+
+COMMENT ON COLUMN RHEI.ST_SOLICITUD_BEI.NB_STATUS IS 'Contiene un número de identificación del status de la solicitud.Proveniente de la unidad de Bienestar Social. Con el objetivo identificar el status de la solicitud.Conformado por una cadena de caracteres.';
+
+COMMENT ON COLUMN RHEI.ST_SOLICITUD_BEI.IN_ACTIVO IS 'Contiene el estado de la solicitud.Proveniente de la unidad de Bienestar Social.Con el objetivo de llevar un registro de las solicitudes activas e inactivas.  Valores A: Activo  I: Inactivo';
+
+
+
+CREATE UNIQUE INDEX RHEI.PK_ST_SOLICITUD_BEI ON RHEI.ST_SOLICITUD_BEI
+(CO_STATUS)
+NOLOGGING
+TABLESPACE TSINDX01_128K
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+ALTER TABLE RHEI.ST_SOLICITUD_BEI ADD (
+  CONSTRAINT CKC_IN_ACTIVO_ST_SOLIC
+  CHECK (IN_ACTIVO in ('A','I')),
+  CONSTRAINT PK_ST_SOLICITUD_BEI
+  PRIMARY KEY
+  (CO_STATUS)
+  USING INDEX RHEI.PK_ST_SOLICITUD_BEI);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON RHEI.ST_SOLICITUD_BEI TO ROLRHEI_ANALISTA;

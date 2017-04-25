@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="demo_phones" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="7" bottomMargin="0" uuid="48d84805-e33a-4962-a953-f66c3f49fc71">
+	<property name="ireport.zoom" value="1.8627639691774704"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="moFactura" class="java.lang.Double"/>
+	<field name="txObservaciones" class="java.lang.String"/>
+	<field name="txConceptoPago" class="java.lang.String"/>
+	<field name="moPagoAdicional" class="java.lang.Double"/>
+	<variable name="vacumMoTotal" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{moFactura}+$F{moPagoAdicional}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="183" y="1" width="77" height="15" forecolor="#000099" backcolor="#F8F8F8" uuid="e9026d2d-48e0-474a-9d20-26d3aff9eeb8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[MONTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="1" width="183" height="15" forecolor="#000099" backcolor="#F8F8F8" uuid="f978a260-47ff-4d65-a7a8-671b677ec743"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[CONCEPTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="475" y="1" width="79" height="15" forecolor="#000099" backcolor="#F8F8F8" uuid="76e97b2e-129f-4f74-ac2e-a96df058b3d0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[MONTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="271" y="1" width="204" height="15" forecolor="#000099" backcolor="#F8F8F8" uuid="e114a8ec-1be1-4e19-a05a-3a048906fb1e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[COMPLEMENTO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="22">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="2" y="2" width="181" height="20" uuid="003753b3-fd53-4e00-a66f-0fb704194347"/>
+				<textFieldExpression><![CDATA[$F{txObservaciones}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement x="183" y="2" width="77" height="20" uuid="b329e4ab-6aa9-436a-8db3-03ac68009e11"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{moFactura}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement x="475" y="2" width="79" height="20" uuid="e6bc1664-4f57-4c92-a907-c118ce922e71"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{moPagoAdicional}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="271" y="2" width="204" height="20" uuid="5b46315d-301f-4102-9ffc-9349dd2bf1bb"/>
+				<textFieldExpression><![CDATA[$F{txConceptoPago}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="15">
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement x="475" y="0" width="77" height="15" uuid="24cb7bfa-0a62-4ee6-914b-0a9e9346d913"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{vacumMoTotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="396" y="0" width="79" height="15" forecolor="#000099" backcolor="#F8F8F8" uuid="cade5f5a-b1bf-4565-8c63-eccb79faa02a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[SUB-TOTAL]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

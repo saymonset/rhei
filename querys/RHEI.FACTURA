@@ -1,0 +1,86 @@
+ALTER TABLE RHEI.FACTURA
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE RHEI.FACTURA CASCADE CONSTRAINTS;
+
+CREATE TABLE RHEI.FACTURA
+(
+  NU_ID_FACTURA       NUMBER(14)                NOT NULL,
+  NU_FACTURA          VARCHAR2(20 CHAR)         NOT NULL,
+  FE_FACTURA          DATE                      NOT NULL,
+  NU_RIF_PROVEEDOR    VARCHAR2(14 CHAR)         NOT NULL,
+  NU_CONTROL          VARCHAR2(20 CHAR),
+  MO_FACTURA          NUMBER(12,2)              NOT NULL,
+  CO_MONEDA           CHAR(3 CHAR)              DEFAULT '044'                 NOT NULL,
+  MO_PAGO_ADICIONAL   FLOAT(126),
+  CO_MONEDA_ADICIONA  CHAR(3 BYTE),
+  TX_CONCEPTO_PAGO    VARCHAR2(500 BYTE)
+)
+TABLESPACE TSDATA01_128K
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+COMPRESS FOR OLTP 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE RHEI.FACTURA IS 'Contiene información relacionada con las factura originadas por concepto de pago del beneficio de educación inicial. Proveniente de la unidad de Bienestar Social. Su finalidad es la de llevar un control de las facturas que deberán pagarse a los distintos proveedores de educaciónInformación originada en el formato o planilla que maneja la unidad de trabajo social para registrar las solicitudes del beneficio, y depende de la periodicidad del pago establecido con el proveedor educativo. Su frecuencia es 1 vez. No es Interfaz.';
+
+COMMENT ON COLUMN RHEI.FACTURA.NU_ID_FACTURA IS 'Contiene información del identificador automático de la factura o del comprobante de pago, con el objetivo de identificar unívocamente la factura o de comprobante , debido a que el número de la factura y;o número de control, puede repetirse por proveedor del beneficio de educación inicial. Originado en una secuencia de base de datos.';
+
+COMMENT ON COLUMN RHEI.FACTURA.NU_FACTURA IS 'Contiene el número de identificación unívoco de la factura. Proveniente de la unidad Educativa y el dueño del dato es Bienestar Social. Con el objetivo de llevar un control de las facturas generadas por una orden de pago. Conformado por una cadena de caracteres.Proveniente  del formato físico de la factura.';
+
+COMMENT ON COLUMN RHEI.FACTURA.FE_FACTURA IS 'Contiene la fecha en la cual se genera la factura.Proveniente de la unidad Educativa y el dueño del dato es Bienestar Social.Con el objetivo de llevar un registro temporal de las solicitudes. Dato  originado n el formato de la factura';
+
+COMMENT ON COLUMN RHEI.FACTURA.NU_RIF_PROVEEDOR IS 'Contiene información del número de registro fiscal del proveedor de bienes y servicios del BCV, con el objetivo de registrar los datos de la factura. Información  proveniente del registro de proveedores del BCV. SACP.PROVEEDOR';
+
+COMMENT ON COLUMN RHEI.FACTURA.NU_CONTROL IS 'Contiene un código alfanumérico de control. Proveniente de la unidad Educativa y el dueño del dato es Bienestar Social.Con el objetivo de llevar un control de las facturas. Conformado por una cadena de caracteres.Proveniente del formato físico de la factura.';
+
+COMMENT ON COLUMN RHEI.FACTURA.MO_FACTURA IS 'Contiene información del moento en bs de la factura emitida por el proveedor del beneficio de educación inicial, información proveniente del proveedor, y originado en el soporte de la factura';
+
+COMMENT ON COLUMN RHEI.FACTURA.CO_MONEDA IS 'Contiene información del código de moneda con el objetivo de identificar  la moneda de la factura parar el trámite de los pagos a los institutos proveedores de educación inicial';
+
+COMMENT ON COLUMN RHEI.FACTURA.MO_PAGO_ADICIONAL IS 'COntiene informaci¢n del monto del pago adicional a una factura';
+
+COMMENT ON COLUMN RHEI.FACTURA.CO_MONEDA_ADICIONA IS 'Contiene informaci¢n del c¢digo de moneda con el objetivo de identificar  la moneda del monto del MO_PAGO_ADICIONAL parar el tr mite de los pagos a los institutos proveedores de educaci¢n inicial';
+
+COMMENT ON COLUMN RHEI.FACTURA.TX_CONCEPTO_PAGO IS 'Contiene informaci¢n del concepto que explica elpago adicoinal a una factura';
+
+
+
+CREATE UNIQUE INDEX RHEI.PK_FACTURA ON RHEI.FACTURA
+(NU_ID_FACTURA)
+NOLOGGING
+TABLESPACE TSINDX01_128K
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+ALTER TABLE RHEI.FACTURA ADD (
+  CONSTRAINT PK_FACTURA
+  PRIMARY KEY
+  (NU_ID_FACTURA)
+  USING INDEX RHEI.PK_FACTURA);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON RHEI.FACTURA TO ROLRHEI_ANALISTA;

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" ng-app="ticketApp">
+<head>
+    <meta charset="utf-8">
+    <title>Ticket Service</title>
+
+<link rel="stylesheet" type="text/css" href="/rhei/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css"	href="/rhei/css/bootstrap-theme.css" />
+    <style>
+        body {
+            padding-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+</div>
+
+<div class="container" ng-controller="SeatCtrl">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}"
+           close="closeAlert($index)">{{alert.msg}}
+    </alert>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Ticket booking</h3>
+        </div>
+        <div class="panel-body">
+            <p>
+                Remaining money: <span class="badge">{{account.balance}}</span>
+            </p>
+            <br/>
+
+            <button type="button" class="btn btn-primary btn-xs"
+                    ng-click="clearWarnings()">Clear warnings
+            </button>
+
+            <button type="button" class="btn btn-warning btn-xs"
+                    ng-click="resetAccount()">Reset account
+            </button>
+        </div>
+
+        <table class="table table-hover table-striped">
+            <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Booked</th>
+            <th>Book</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="seat in seats">
+                <td>{{seat.id}}</td>
+                <td>{{seat.name}}</td>
+
+                <td>${{seat.price}}</td>
+                <td><span
+                        class="glyphicon glyphicon-{{seat.booked ? 'ok' :'remove'}}"></span></td>
+                <td>
+                    <button type="button"
+                            class="btn btn-primary {{seat.booked? 'disabled' :''}} btn-xs"
+                            ng-click="bookTicket(seat)">Book
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <footer>
+        <p class="text-muted">&copy; Packt Publishing 2014</p>
+    </footer>
+</div>
+
+
+<script type="text/javascript" src="/rhei/js/angular.js"></script>
+<script type="text/javascript" src="/rhei/js/angular-locale_es-ve.js"></script>
+    <script type="text/javascript" src="/rhei/js/angular-resource.js"></script>
+<script type="text/javascript" src="/rhei/js/angular-route.js"></script>
+
+<script type="text/javascript" src="/rhei/js/ui-bootstrap-tpls.js"></script>
+
+<script src="/rhei/js/scripts/app.js"></script>
+<script src="/rhei/js/scripts/controllers/seat.js"></script>
+<script src="/rhei/js/scripts/services/seatservice.js"></script>
+<script src="/rhei/js/scripts/services/accountservice.js"></script>
+
+</body>
+</html>

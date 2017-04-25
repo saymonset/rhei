@@ -1,0 +1,63 @@
+ALTER TABLE RHEI.BENEFICIARIO_EI
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE RHEI.BENEFICIARIO_EI CASCADE CONSTRAINTS;
+
+CREATE TABLE RHEI.BENEFICIARIO_EI
+(
+  CO_EMPLEADO      NUMBER(6)                    NOT NULL,
+  CEDULA_FAMILIAR  NUMBER(8)                    NOT NULL
+)
+TABLESPACE TSDATA01_128K
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+COMPRESS FOR OLTP 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE RHEI.BENEFICIARIO_EI IS 'Contiene los beneficiarios asociados por empleadoProveniente de la unidad de Bienestar Social. Su finalidad es la de asociar a cada trabajador aquellos familiares aptos para el otorgamiento del beneficio de educación inicial. Información originada en el formato o planilla que maneja la unidad de trabajo social para registrar las solicitudes del beneficioSu periodicidad de actualización anual.Su frecuencia es 1 vez. No es Interfaz.';
+
+COMMENT ON COLUMN RHEI.BENEFICIARIO_EI.CO_EMPLEADO IS 'Contiene el código de identificación (único) del empleado asociado a la solicitud del beneficio de educación inicial. Proveniente de la unidad de Bienestar Social. Con el objetivo de asociar al empleado que realizó la solicitud del beneficio. Dato proveniente de la tabla Nomina.';
+
+COMMENT ON COLUMN RHEI.BENEFICIARIO_EI.CEDULA_FAMILIAR IS 'Contiene el código de identificación del familiar asociado a la solicitud del beneficio de educación inicial. Proveniente de la unidad de Bienestar Social. Con el objetivo de asociar al familiar del empleado objeto del beneficio. Proviene de la tabla de familiares calificados';
+
+
+
+CREATE UNIQUE INDEX RHEI.PK_BENEFICIARIO_EI ON RHEI.BENEFICIARIO_EI
+(CO_EMPLEADO, CEDULA_FAMILIAR)
+NOLOGGING
+TABLESPACE TSINDX01_128K
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL
+COMPRESS 1;
+
+
+ALTER TABLE RHEI.BENEFICIARIO_EI ADD (
+  CONSTRAINT PK_BENEFICIARIO_EI
+  PRIMARY KEY
+  (CO_EMPLEADO, CEDULA_FAMILIAR)
+  USING INDEX RHEI.PK_BENEFICIARIO_EI);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON RHEI.BENEFICIARIO_EI TO ROLRHEI_ANALISTA;

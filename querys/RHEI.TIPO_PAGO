@@ -1,0 +1,62 @@
+ALTER TABLE RHEI.TIPO_PAGO
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE RHEI.TIPO_PAGO CASCADE CONSTRAINTS;
+
+CREATE TABLE RHEI.TIPO_PAGO
+(
+  CO_TI_PAGO    NUMBER(1)                       DEFAULT 1                     NOT NULL,
+  NB_TIPO_PAGO  VARCHAR2(15 CHAR)
+)
+TABLESPACE TSDATA01_128K
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+COMPRESS FOR OLTP 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE RHEI.TIPO_PAGO IS 'Contiene información sobre los posibles tipos de pagos permitidos por la aplicación Beneficios Escolares. Suministrada por la Coordinación Funcional de Recursos Humanos.Tiene como finalidad  diferenciar los pagos registrados en el sistema según el tipo de pago efectuado.La información registrada  proviene de las propuestas generadas por la Coordinación Funcional de Recursos Humanos.Su actualización se realiza anual. 1 veces en el año a ejecutar. No es Interfaz.';
+
+COMMENT ON COLUMN RHEI.TIPO_PAGO.CO_TI_PAGO IS 'Contiene información que indica el código que identifica a un tipo de pago específico. Proveniente del Sistema Integral de Recursos Humanos. Con la finalidad identificar al tipo de pago. Sus valores son números enteros compuestos por un dígito. Inicialmente se definen los siguientes tipos de pagos: 1: Convencional, 2:Ajuste y 3: Prorrateo. Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.TIPO_PAGO.NB_TIPO_PAGO IS 'Contiene información que indica el nombre utilizado para describir al código asociado a un tipo de pago. Proveniente del Sistema Integral de Recursos Humanos. Con la finalidad identificar plenamente al tipo de pago. Está compuesto por una cadena de máximo 15 caracteres. Información recibida a través del S.I.R.H.';
+
+
+
+CREATE UNIQUE INDEX RHEI.PK_TIPO_PAGO ON RHEI.TIPO_PAGO
+(CO_TI_PAGO)
+NOLOGGING
+TABLESPACE TSINDX01_128K
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+ALTER TABLE RHEI.TIPO_PAGO ADD (
+  CONSTRAINT PK_TIPO_PAGO
+  PRIMARY KEY
+  (CO_TI_PAGO)
+  USING INDEX RHEI.PK_TIPO_PAGO);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON RHEI.TIPO_PAGO TO ROLRHEI_ANALISTA;

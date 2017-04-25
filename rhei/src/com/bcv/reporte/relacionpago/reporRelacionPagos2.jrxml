@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteMei9" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" isSummaryNewPage="true" isSummaryWithPageHeaderAndFooter="true" uuid="e8a82ec5-210c-4fb3-847d-408354c24cfb">
+	<property name="ireport.zoom" value="2.2000000000000064"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\simon\\workspace\\rhei\\src\\com\\bcv\\reporte\\relacionpago\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="facturas" class="java.util.List"/>
+	<field name="cedulaFamiliar" class="java.lang.String"/>
+	<field name="nombreFlia" class="java.lang.String"/>
+	<field name="edad" class="java.lang.Integer"/>
+	<field name="fechaNacimiento" class="java.util.Date"/>
+	<field name="moPeriodo" class="java.lang.Double"/>
+	<field name="moAporteBcv" class="java.lang.Double"/>
+	<field name="moMatricula" class="java.lang.Double"/>
+	<variable name="filtro" class="java.lang.String"/>
+	<variable name="vacumMoTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{vacumMoTotal}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="55" splitType="Stretch">
+			<subreport>
+				<reportElement x="-18" y="42" width="584" height="11" uuid="8c2f0ad9-5a76-47cb-86c5-41467e2f2f4c"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{facturas})]]></dataSourceExpression>
+				<returnValue subreportVariable="vacumMoTotal" toVariable="vacumMoTotal" calculation="Sum"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reportRelacionPago3.jasper"]]></subreportExpression>
+			</subreport>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="-19" y="15" width="117" height="15" uuid="99d043f4-b1ae-4410-82c4-2ac8c5b09a47"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreFlia}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Auto" pattern="#,##0.00;-#,##0.00">
+				<reportElement x="98" y="15" width="114" height="15" uuid="c396d190-540a-4f9c-923f-c72e4bc77519"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.0" lineColor="#0000FF"/>
+					<topPen lineWidth="0.0" lineColor="#0000FF"/>
+					<leftPen lineWidth="0.0" lineColor="#0000FF"/>
+					<bottomPen lineWidth="0.0" lineColor="#0000FF"/>
+					<rightPen lineWidth="0.0" lineColor="#0000FF"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{moPeriodo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="-20" y="0" width="118" height="14" forecolor="#000099" backcolor="#F8F8F8" uuid="ac09d174-9cb6-4988-9945-af3d1571fa4d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[NOMBRE DEL NIÑO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="98" y="0" width="124" height="15" forecolor="#000099" backcolor="#F8F8F8" uuid="6cb1c419-12e8-4dd1-81e5-d425db4ade36"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[MONTO MENSUALIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="234" y="0" width="104" height="15" forecolor="#000099" backcolor="#F8F8F8" uuid="02384840-cd31-486a-9b52-8f1701580f80"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[MONTO POR LEY]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" evaluationTime="Auto" pattern="#,##0.00;-#,##0.00">
+				<reportElement x="234" y="15" width="105" height="15" uuid="ba99c2af-5dc4-4b5e-9fb7-aa9082208724"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.0" lineColor="#0000FF"/>
+					<topPen lineWidth="0.0" lineColor="#0000FF"/>
+					<leftPen lineWidth="0.0" lineColor="#0000FF"/>
+					<bottomPen lineWidth="0.0" lineColor="#0000FF"/>
+					<rightPen lineWidth="0.0" lineColor="#0000FF"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{moAporteBcv}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="465" y="0" width="102" height="15" forecolor="#000099" backcolor="#F8F8F8" uuid="65b82d9c-6523-43a2-a5f9-998a4090a499"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[MONTO MATRÍCULA]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" evaluationTime="Auto" pattern="#,##0.00;-#,##0.00">
+				<reportElement x="457" y="15" width="110" height="15" uuid="2658b5cb-3b3a-4137-910b-1ada44e50be2"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.0" lineColor="#0000FF"/>
+					<topPen lineWidth="0.0" lineColor="#0000FF"/>
+					<leftPen lineWidth="0.0" lineColor="#0000FF"/>
+					<bottomPen lineWidth="0.0" lineColor="#0000FF"/>
+					<rightPen lineWidth="0.0" lineColor="#0000FF"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{moMatricula}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

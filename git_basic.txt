@@ -1,0 +1,19 @@
+Esta es una prueba
+==================
+
+git merge  commit # run  after fix conflict
+git branch --delete rhei_reporte # delete a branch local
+git reset --hard # delete all changes local and pull on the last head
+git clean --force -X # remove all files ignored by the file .gitignore
+git ls-files #files that are currently tracked in git
+git ls-files --others (or -o) #show untracked files
+git reset --hard # You’ve reset the Git working directory to the last committed state.
+
+#put files to igonre
+#Change to the directory containing your repository: for example,
+#cd /Users/mike/GitInPracticeRedux/.
+#2 Run echo \*.tmp > .gitignore. This creates a new file named .gitignore with
+#the contents “*.tmp”.
+#3 Run git add .gitignore to add .gitignore to the index staging area for the next
+#commit. There will be no output.
+#4 Run git commit --message='Ignore .tmp files.'. The output should resemble the following.

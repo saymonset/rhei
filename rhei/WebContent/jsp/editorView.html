@@ -1,0 +1,16 @@
+<div class="panel-body">
+    <div class="form-group">
+        <label>nroFactura:</label>
+        <input class="form-control" ng-model="currentProduct.nroFactura" />
+    </div>
+    <div class="form-group">
+        <label>txObservaciones:</label>
+        <input class="form-control" ng-model="currentProduct.txObservaciones" />
+    </div>
+    <div class="form-group">
+        <label>montoFactura:</label>
+        <input class="form-control" ng-model="currentProduct.montoFactura" />
+    </div>
+    <button class="btn btn-primary" ng-click="saveEdit(currentProduct)">Save</button>
+    <button class="btn btn-primary" ng-click="cancelEdit()">Cancel</button>
+</div>

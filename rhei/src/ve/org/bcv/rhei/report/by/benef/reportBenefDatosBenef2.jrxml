@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteMei9" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="5" bottomMargin="5" isSummaryNewPage="true" isSummaryWithPageHeaderAndFooter="true" uuid="e8a82ec5-210c-4fb3-847d-408354c24cfb">
+	<property name="ireport.zoom" value="1.366026910730142"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\simon\\workspace\\rhei\\src\\ve\\org\\bcv\\rhei\\report\\by\\benef\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="facturas" class="java.util.List"/>
+	<field name="tipoEmpleado" class="java.lang.String"/>
+	<field name="cedulaFamiliar" class="java.lang.Integer"/>
+	<field name="nombreFlia" class="java.lang.String"/>
+	<field name="apellidoFlia" class="java.lang.String"/>
+	<field name="nuRifProveedor" class="java.lang.String"/>
+	<field name="nbProveedor" class="java.lang.String"/>
+	<sortField name="cedulaFamiliar"/>
+	<variable name="filtro" class="java.lang.String"/>
+	<variable name="vmontobcv" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{vmontobcv}]]></variableExpression>
+	</variable>
+	<group name="cedulaFamiliar" keepTogether="true">
+		<groupExpression><![CDATA[$F{cedulaFamiliar}]]></groupExpression>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="nuRifProveedor" keepTogether="true">
+		<groupExpression><![CDATA[$F{nuRifProveedor}]]></groupExpression>
+		<groupHeader>
+			<band/>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="56" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="34" width="558" height="20" uuid="8c2f0ad9-5a76-47cb-86c5-41467e2f2f4c"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{facturas})]]></dataSourceExpression>
+				<returnValue subreportVariable="vmontobcv" toVariable="vmontobcv" calculation="Sum"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reportBenefDatosFactura3.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="1" y="17" width="81" height="15" uuid="99d043f4-b1ae-4410-82c4-2ac8c5b09a47"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cedulaFamiliar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="17" width="70" height="15" uuid="fa95dc36-88a1-45a8-b5aa-126f9becedb8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreFlia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="15" width="72" height="15" uuid="1eaea7b8-125d-4ba2-9251-c3dbe9ba8812"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellidoFlia}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Auto">
+				<reportElement x="244" y="15" width="188" height="15" printWhenGroupChanges="nuRifProveedor" uuid="c396d190-540a-4f9c-923f-c72e4bc77519"/>
+				<box leftPadding="5">
+					<pen lineWidth="0.0" lineColor="#0000FF"/>
+					<topPen lineWidth="0.0" lineColor="#0000FF"/>
+					<leftPen lineWidth="0.0" lineColor="#0000FF"/>
+					<bottomPen lineWidth="0.0" lineColor="#0000FF"/>
+					<rightPen lineWidth="0.0" lineColor="#0000FF"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nbProveedor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="82" y="1" width="162" height="15" printWhenGroupChanges="cedulaFamiliar" forecolor="#000099" backcolor="#F8F8F8" uuid="b4556ff7-72b8-4fc7-876b-8b3794847e61"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Beneficiario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="1" width="81" height="15" printWhenGroupChanges="cedulaFamiliar" forecolor="#000099" backcolor="#F8F8F8" uuid="ac09d174-9cb6-4988-9945-af3d1571fa4d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Cédula Beneficiario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="244" y="0" width="314" height="15" printWhenGroupChanges="cedulaFamiliar" forecolor="#000099" backcolor="#F8F8F8" uuid="2fb15a5c-3d79-42ec-be9f-dc974a5fef26"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Centro de Educación Inicial]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="12"/>
+	</summary>
+</jasperReport>

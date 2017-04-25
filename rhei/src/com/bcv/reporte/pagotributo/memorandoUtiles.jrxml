@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteMei9" pageWidth="612" pageHeight="792" columnWidth="514" leftMargin="49" rightMargin="49" topMargin="3" bottomMargin="58" isSummaryNewPage="true" isSummaryWithPageHeaderAndFooter="true" uuid="e8a82ec5-210c-4fb3-847d-408354c24cfb">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="58"/>
+	<property name="ireport.y" value="336"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\simon\\workspace\\rhei\\src\\com\\bcv\\reporte\\relacionpago\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="descripPeriodo" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="titulo" class="java.lang.String"/>
+	<parameter name="FIRMA" class="java.lang.String"/>
+	<parameter name="departamentofirma" class="java.lang.String"/>
+	<parameter name="utiles1" class="java.lang.String"/>
+	<parameter name="utiles2" class="java.lang.String"/>
+	<parameter name="utiles3" class="java.lang.String"/>
+	<parameter name="montoUtiles" class="java.lang.String"/>
+	<parameter name="FIRREP" class="java.lang.String"/>
+	<parameter name="fecha" class="java.lang.String"/>
+	<parameter name="tipoEmpl" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<title>
+		<band height="214" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="103" height="63" uuid="01e04a59-35be-48d3-809b-d14d120c595f"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="63" width="53" height="20" forecolor="#000000" backcolor="#F8F8F8" uuid="5278ddc3-08c6-4b83-bca3-f77ec68be219"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Caracas,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="155" width="514" height="22" forecolor="#000000" backcolor="#F8F8F8" uuid="b43b0bc5-5c82-488d-a2ec-85f94f59e377"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Memorando DBS-]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement x="53" y="63" width="123" height="20" uuid="eefa5d74-7bea-4819-bc53-7da42508f4ea"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="162">
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="63" height="22" forecolor="#000000" backcolor="#F8F8F8" uuid="fb568353-75a6-4533-9f28-ed846e77f875"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[PARA: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="33" width="63" height="23" forecolor="#000000" backcolor="#F8F8F8" uuid="c30fa4eb-d409-41bc-925b-070dbe2cabab"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[DE: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="68" width="63" height="23" forecolor="#000000" backcolor="#F8F8F8" uuid="4b80aa69-a9b2-4cbe-843f-198af331a666"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ASUNTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="82" y="0" width="378" height="22" forecolor="#000000" backcolor="#F8F8F8" uuid="21ae58fe-b2ed-464f-adc5-e1ec907abc30"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Departamento de Nómina y Egreso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="82" y="68" width="398" height="42" forecolor="#000000" backcolor="#F8F8F8" uuid="3f2dfb94-a165-4214-82bf-7df3e2f87ffe"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Pago de bonificación de textos y utiles escolares etapa educación inicial del personal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="82" y="34" width="378" height="22" forecolor="#000000" backcolor="#F8F8F8" uuid="dbc30962-c191-48cf-8cbc-205071c270b5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Departamento de Beneficios Socioeconómicos]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="154" y="90" width="193" height="20" uuid="fd4f4ab2-726d-4a2a-9537-ded8832af051"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tipoEmpl}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="125">
+			<textField isBlankWhenNull="false">
+				<reportElement x="0" y="8" width="514" height="61" uuid="7655fb4e-06c1-4d3c-a8ff-b35202dc2f06"/>
+				<textElement textAlignment="Justified">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{utiles1}+" "+$P{descripPeriodo}+" "+$P{utiles2}+" "+$P{montoUtiles}+" "+$P{utiles3}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="126">
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="16" width="82" height="16" forecolor="#000000" backcolor="#F8F8F8" uuid="77d704c8-7cff-4392-a35f-8fc4688c0774"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Atentamente]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="106" width="226" height="20" uuid="04137a96-01f8-4d41-ada9-31bc059a3ee0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{departamentofirma}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="86" width="223" height="20" uuid="becf9dfb-51b2-4013-855f-ae467c89c530"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FIRMA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="95">
+			<textField isBlankWhenNull="false">
+				<reportElement x="0" y="28" width="82" height="20" uuid="14aa5ebf-d7d2-4df1-a92a-345bbee4feb8"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FIRREP}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

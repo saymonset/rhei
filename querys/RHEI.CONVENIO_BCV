@@ -1,0 +1,68 @@
+ALTER TABLE RHEI.CONVENIO_BCV
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE RHEI.CONVENIO_BCV CASCADE CONSTRAINTS;
+
+CREATE TABLE RHEI.CONVENIO_BCV
+(
+  NU_ID_CONVENIO     NUMBER(10)                 NOT NULL,
+  NU_RIF_PROVEEDOR   VARCHAR2(14 CHAR),
+  NU_CONVENIO        VARCHAR2(10 CHAR)          NOT NULL,
+  FE_DESDE_CONVENIO  DATE                       NOT NULL,
+  FE_HASTA_CONVENIO  DATE                       NOT NULL,
+  NB_CONVENIO        VARCHAR2(20 CHAR)          NOT NULL
+)
+TABLESPACE TSDATA04
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+COMPRESS FOR OLTP 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE RHEI.CONVENIO_BCV IS 'Contiene la  información correspondiente a los convenios suscritos con proveedores educativosProveniente de la unidad de Bienestar Social. Su objetivo es la de llevar un control de los convenios realizados con el fin de dar cumplimiento al beneficio de educación inicialInformación originada en el formato o planilla que maneja la unidad de trabajo social para registrar las solicitudes del beneficio. Su periodicidad de actualización es anual. Su frecuencia es 1 vez. .No es Interfaz.';
+
+COMMENT ON COLUMN RHEI.CONVENIO_BCV.NU_ID_CONVENIO IS 'Contiene un número único de identificación del convenio establecido entre el proveedor educativo y el Banco Central de Venezuela. Proveniente de la unidad de Bienestar Social. Con el objetivo de llevar un histórico de las distintas solicitudes del beneficio de educación inicial realizadas por el empleado. Número generado a través de una secuencia de base de datos';
+
+COMMENT ON COLUMN RHEI.CONVENIO_BCV.NU_RIF_PROVEEDOR IS 'Contiene información del número de registro fiscal del proveedor de bienes y servicios del BCV, con el objetivo de identicar el proveedor del beneneficio de educación inicial, con quien el BCV establece el convenio.';
+
+COMMENT ON COLUMN RHEI.CONVENIO_BCV.NU_CONVENIO IS 'Contiene un código de identificación del convenio. Proveniente de la unidad de Bienestar Social.Con el objetivo de llevar un control de los convenios llevados a cabo por el Banco Central de Venezuela por concepto del beneficio de educación inicial. Conformado por una cadena alfanumérica de caracteres. Proveniente de formulario.';
+
+COMMENT ON COLUMN RHEI.CONVENIO_BCV.FE_DESDE_CONVENIO IS 'Contiene la fecha de comienzo del convenio. Proveniente de la unidad de Bienestar Social. Con el objetivo establecer la referencia temporal de entrada en vigencia del convenio. Está compuesto por dia, mes y año (dd-mm-yyyy)';
+
+COMMENT ON COLUMN RHEI.CONVENIO_BCV.FE_HASTA_CONVENIO IS 'Contiene la fecha de finalización del convenio. Proveniente de la unidad de Bienestar Social. Con el objetivo establecer la referencia temporal de entrada en vigencia del convenio. Está compuesto por dia, mes y año (dd-mm-yyyy)';
+
+COMMENT ON COLUMN RHEI.CONVENIO_BCV.NB_CONVENIO IS 'Contiene un nombre de identificación del expediente.Proveniente de la unidad de Bienestar Social. Con el objetivo de diferenciar los distintos convenios.Conformado por una cadena alfanumérica de caracteres. ';
+
+
+
+CREATE UNIQUE INDEX RHEI.PK_CONVENIO_BCV ON RHEI.CONVENIO_BCV
+(NU_ID_CONVENIO)
+LOGGING
+TABLESPACE TSINDX04
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+ALTER TABLE RHEI.CONVENIO_BCV ADD (
+  CONSTRAINT PK_CONVENIO_BCV
+  PRIMARY KEY
+  (NU_ID_CONVENIO)
+  USING INDEX RHEI.PK_CONVENIO_BCV);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON RHEI.CONVENIO_BCV TO ROLRHEI_ANALISTA;

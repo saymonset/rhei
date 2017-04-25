@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteMei9" pageWidth="612" pageHeight="792" columnWidth="514" leftMargin="49" rightMargin="49" topMargin="3" bottomMargin="58" isSummaryNewPage="true" isSummaryWithPageHeaderAndFooter="true" uuid="e8a82ec5-210c-4fb3-847d-408354c24cfb">
+	<property name="ireport.zoom" value="1.2078825000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\simon\\workspace\\rhei\\src\\com\\bcv\\reporte\\relacionpago\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="descripPeriodo" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="total" class="java.lang.Double"/>
+	<parameter name="titulo" class="java.lang.String"/>
+	<parameter name="para" class="java.lang.String"/>
+	<parameter name="de" class="java.lang.String"/>
+	<parameter name="asunto" class="java.lang.String"/>
+	<parameter name="parrafo2" class="java.lang.String"/>
+	<parameter name="bloque0" class="java.lang.String"/>
+	<parameter name="bloque1" class="java.lang.String"/>
+	<parameter name="bloque2" class="java.lang.String"/>
+	<parameter name="bloque3" class="java.lang.String"/>
+	<parameter name="bloque5" class="java.lang.String"/>
+	<parameter name="tipoEmpl" class="java.lang.String"/>
+	<parameter name="atentamentefirma" class="java.lang.String"/>
+	<parameter name="departamentofirma" class="java.lang.String"/>
+	<parameter name="bloque1.1" class="java.lang.String"/>
+	<parameter name="bloque5.1" class="java.lang.String"/>
+	<parameter name="pageReport" class="java.lang.Number"/>
+	<parameter name="bloque1.2" class="java.lang.String"/>
+	<parameter name="fechadiamesanio" class="java.lang.String"/>
+	<parameter name="totalmemorando" class="java.lang.String"/>
+	<parameter name="FIRREP" class="java.lang.String"/>
+	<parameter name="fecha" class="java.lang.String"/>
+	<parameter name="bloqueEsp1" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="monto" class="java.lang.Double"/>
+	<title>
+		<band height="165" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="0" y="102" width="514" height="20" forecolor="#000000" uuid="168e8ecb-0bcb-4002-8b18-cd4b25262946"/>
+				<box leftPadding="5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="103" height="63" uuid="01e04a59-35be-48d3-809b-d14d120c595f"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="73" width="53" height="15" forecolor="#000000" backcolor="#F8F8F8" uuid="5278ddc3-08c6-4b83-bca3-f77ec68be219"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Caracas,]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement x="51" y="73" width="123" height="15" uuid="1b105e04-10f2-4dcb-ad73-1e2a1d974d8d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="112">
+			<textField>
+				<reportElement x="71" y="0" width="399" height="22" uuid="197b3511-eb0f-4320-bfd1-9894efa7f681"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{para}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="71" y="22" width="400" height="23" uuid="1a60898d-4383-41c5-902a-81831815bb0f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{de}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="yyyy">
+				<reportElement key="textField" x="71" y="45" width="443" height="37" uuid="696a0f79-636e-48e8-a332-abcecd45aeba"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{asunto}+" "+ $P{tipoEmpl}+" "+$P{descripPeriodo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="52" height="22" forecolor="#000000" backcolor="#F8F8F8" uuid="fb568353-75a6-4533-9f28-ed846e77f875"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Para: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="22" width="53" height="23" forecolor="#000000" backcolor="#F8F8F8" uuid="c30fa4eb-d409-41bc-925b-070dbe2cabab"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[De: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="45" width="52" height="23" forecolor="#000000" backcolor="#F8F8F8" uuid="4b80aa69-a9b2-4cbe-843f-198af331a666"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Asunto:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="97">
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement x="0" y="73" width="514" height="24" uuid="90a36c8f-cefa-4f55-afbb-7e164aa4304e"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{parrafo2}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="ddMMyyyy" isBlankWhenNull="false">
+				<reportElement x="0" y="0" width="514" height="25" uuid="ddcd7e72-1383-4305-9962-912f0da29d02"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bloque0}+" "+$P{tipoEmpl}+" "+$P{bloque1}+" "+$P{bloque1.1}+" "+$P{fechadiamesanio}+$P{bloque1.2}+$P{pageReport}+$P{bloque3}+" "+$P{totalmemorando}+$P{bloque5}+" "+$P{bloque5.1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="169">
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="30" width="82" height="23" forecolor="#000000" backcolor="#F8F8F8" uuid="77d704c8-7cff-4392-a35f-8fc4688c0774"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="SansSerif" size="11" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Atentamente]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="107" width="226" height="20" uuid="ef2282b7-aca8-487b-9d60-6da0cc668f32"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{atentamentefirma}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="127" width="226" height="20" uuid="04137a96-01f8-4d41-ada9-31bc059a3ee0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{departamentofirma}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="95">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="9" width="82" height="20" uuid="14aa5ebf-d7d2-4df1-a92a-345bbee4feb8"/>
+				<textFieldExpression><![CDATA[$P{FIRREP}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

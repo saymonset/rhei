@@ -1,0 +1,51 @@
+DROP VIEW RHEI.PROVEEDOR_CEI;
+
+/* Formatted on 02/12/2015 09:47:17 a.m. (QP5 v5.163.1008.3004) */
+CREATE OR REPLACE FORCE VIEW RHEI.PROVEEDOR_CEI
+(
+   NU_RIF_PROVEEDOR,
+   NB_PROVEEDOR,
+   IN_ACTIVO,
+   NU_TELEFONO1,
+   NU_TELEFONO2,
+   NU_FAX,
+   DI_PROVEEDOR,
+   TX_E_MAIL,
+   NB_PERS_CONTACTO,
+   IN_LOCALIDAD_BCV
+)
+AS
+   SELECT a.nu_rif_proveedor,
+          a.nb_proveedor,
+          a.in_activo,
+          d.nu_telefono1,
+          d.nu_telefono2,
+          d.nu_fax,
+          d.di_proveedor,
+          d.tx_e_mail,
+          d.nb_pers_contacto,
+          d.in_localidad_bcv
+     FROM sacp.proveedor A,
+          sacp.det_proveedor D,
+          sacp.clase_prov_prov C,
+          sacp.clase_proveedor B
+    WHERE     a.nu_rif_proveedor = d.nu_rif_proveedor
+          AND a.nu_rif_proveedor = c.nu_rif_proveedor
+          AND c.nu_clase_proveedor = b.nu_clase_proveedor
+          AND EXISTS
+                 (SELECT 1
+                    FROM RHEI.parametro P
+                   WHERE TO_NUMBER (P.TX_VALOR_PARAMETRO) =
+                            b.nu_clase_proveedor
+                         AND P.co_tipo_beneficio = 'RHEI'
+                         AND P.co_parametro = 'CLASP'
+                         AND P.fe_vigencia =
+                                (SELECT MAX (P1.fe_vigencia)
+                                   FROM RHEI.parametro P1
+                                  WHERE P.co_tipo_beneficio =
+                                           P1.co_tipo_beneficio
+                                        AND P.co_parametro = P1.co_parametro
+                                        AND P1.fe_vigencia <= SYSDATE));
+
+
+GRANT SELECT ON RHEI.PROVEEDOR_CEI TO ROLRHEI_ANALISTA;

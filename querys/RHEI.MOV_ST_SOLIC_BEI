@@ -1,0 +1,135 @@
+ALTER TABLE RHEI.MOV_ST_SOLIC_BEI
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE RHEI.MOV_ST_SOLIC_BEI CASCADE CONSTRAINTS;
+
+CREATE TABLE RHEI.MOV_ST_SOLIC_BEI
+(
+  NU_SOLICITUD       NUMBER(20)                 NOT NULL,
+  CO_STATUS          VARCHAR2(1 CHAR)           NOT NULL,
+  FE_STATUS          DATE                       NOT NULL,
+  IN_NIVEL_ESCOLAR   VARCHAR2(1 CHAR),
+  IN_BENEF_COMPART   VARCHAR2(1 CHAR)           DEFAULT 'N'                   NOT NULL,
+  IN_TIPO_EMPRESA    VARCHAR2(1 CHAR)           DEFAULT '1',
+  MO_APORTE_BCV      NUMBER(12,2)               NOT NULL,
+  MO_PERIODO         NUMBER(12,2)               NOT NULL,
+  MO_MATRICULA       NUMBER(12,2)               NOT NULL,
+  MO_EMPRESA_REPRES  NUMBER(12,2),
+  CO_MONEDA          CHAR(3 CHAR)               NOT NULL,
+  CO_PERIODO         NUMBER(2)                  NOT NULL,
+  TX_OBSERVACION     VARCHAR2(255 CHAR),
+  NU_TLF_FAM_RELAC   VARCHAR2(20 CHAR)
+)
+TABLESPACE TSDATA01_128K
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+COMPRESS FOR OLTP 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE RHEI.MOV_ST_SOLIC_BEI IS 'Contiene la  información de enlace de las tablas solicitud_bei y st_solicitud_bei. Proveniente de la unidad de Bienestar Social. Su finalidad es la de llevar el  control de las solicitudes para el otorgamiento del beneficio de educación inicia. lnformación originada en el formato o planilla que maneja la unidad de trabajo social para registrar las solicitudes del beneficio. Su periodicidad de actualización es anual. Su frecuencia es 1 veces.No es Interfaz.';
+
+COMMENT ON COLUMN RHEI.MOV_ST_SOLIC_BEI.NU_SOLICITUD IS 'Contiene información del código que identifica unívocamente una solicitud asociada a un trabajador que labora en el BCV. Proveniente de la unidad de Bienestar Social.Con el objetivo de codificar las diferentes solicitudes registradas por los empleados que laboran en el BCV para percibir el beneficio de educación inicial.Es un valor consecutivo que se incrementa en 1 en función de las solicitudes tramitadas . Datos será generado automáticamente, desde la Base de Datos.';
+
+COMMENT ON COLUMN RHEI.MOV_ST_SOLIC_BEI.CO_STATUS IS 'Contiene el código, unívoco, del status de la solicitud.Proveniente de la unidad de Bienestar Social.Con el objetivo de llevar un registro temporal de las solicitudes.Los posibles valores son: A (Activo), R (renovado) ó D (desincorporado), C (Actualizado)';
+
+COMMENT ON COLUMN RHEI.MOV_ST_SOLIC_BEI.FE_STATUS IS 'Contiene la fecha en la cual se actualiza el status de la solicitud.Proveniente de la Unidad de Bienestar Social. Con el objetivo de llevar un registro temporal del cambio del status de la solicitud. Está compuesto por dia, mes y año (dd-mm-yyyy)';
+
+COMMENT ON COLUMN RHEI.MOV_ST_SOLIC_BEI.IN_NIVEL_ESCOLAR IS 'Contiene información del nivel escolar que cursa el familiar beneficiario. Proveniente de la unidad de Bienestar Social. Con el objetivo de definir el nivel escolar que cursa el beneficiario de la solicitud. Valores: 0: Maternal. 1: 1er Nivel  2: 2do  3: Nivel  3er  Nivel';
+
+COMMENT ON COLUMN RHEI.MOV_ST_SOLIC_BEI.IN_BENEF_COMPART IS 'Contiene la información acerca de si el proveedor educativo es convenido o no lo es. Proveniente de la unidad de Bienestar Social.Con el objetivo de conocer si el proveedor educativo mantiene un convenio con el Banco Central de Venezuela.Valores: S: Si es compartido el beneficio  N: No es compartido el beneficio';
+
+COMMENT ON COLUMN RHEI.MOV_ST_SOLIC_BEI.IN_TIPO_EMPRESA IS 'Contiene información del indicdaor con el objetivo de identificar si el beneficio de educación Inicial es compartido entre el Banco Central de Venezuela y la empresa donde labora el cónyuge del empleado. Proveniente de la unidad de Bienestar Social. Con el objetivo de saber el tipo de empresa que comparte la responsabilidad junto al Banco Central de Venezuela en el pago del beneficio. Los posibles valores son:0 (PÚBLICA), 1 (PRIVADA)';
+
+COMMENT ON COLUMN RHEI.MOV_ST_SOLIC_BEI.MO_APORTE_BCV IS 'Contiene el monto que cubre o aporta el Banco Central de Venezuela. Proveniente de la unidad de Bienestar Social. Con el objetivo establecer el monto que debe cubrir el banco para honrar el beneficio de educación inicial. Expresado en Bolívares (Bs.)';
+
+COMMENT ON COLUMN RHEI.MOV_ST_SOLIC_BEI.MO_PERIODO IS 'Contiene el monto en Bs que se le debe cancelar, según la periodicidad de pago establecida, al proveedor educativo. Proveniente de la unidad de Bienestar Social.Con el objetivo asignarle el monto a pagar según el período de pago establecido.Expresado en Bolívares (Bs.)';
+
+COMMENT ON COLUMN RHEI.MOV_ST_SOLIC_BEI.MO_MATRICULA IS 'Contiene la cantidad que se debe pagar al proveedor educativo por el el derecho a la prestación de servicios académicos. Proveniente de la unidad de Bienestar Social.Con el objetivo establecer el monto a pagar por este concepto.Expresado en Bolívares (Bs.)';
+
+COMMENT ON COLUMN RHEI.MOV_ST_SOLIC_BEI.MO_EMPRESA_REPRES IS 'Contiene el monto que la empresa del cónyuge se compromete a honrar para cumplir con el beneficio de educación inicial. Proveniente de la unidad de Bienestar Social. Con el objetivo de conocer el monto que debe aportar el Banco Central de Venezuela para el pago del beneficio. Monto expresado en Bolívares (Bs.) con a lo sumo dos dígitos decimales. Proveniente de formulario.';
+
+COMMENT ON COLUMN RHEI.MOV_ST_SOLIC_BEI.CO_MONEDA IS 'Contiene el código de la moneda en la cual están expresados los montos del movimiento de la Solicitud de beneficio de educación inicial';
+
+COMMENT ON COLUMN RHEI.MOV_ST_SOLIC_BEI.CO_PERIODO IS 'Contiene el valor que identifica al período escolar asociado a la solicitud del beneficio de educación inicial.Proveniente del Sistema Integral de Recursos Humanos.Con la finalidad de referenciar a un período escolar. Constituido por un valor numérico de tipo entero de hasta 2 dígitos. Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.MOV_ST_SOLIC_BEI.TX_OBSERVACION IS 'Contiene información información de interes sobre la solicitud agregado por el analista. Proveniente del Sistema RHEI. Con el objetivo de almacenar información relacionada con la solicitud.El tipo de datos es ''VARCHAR2'', de tamaño 255. Este campo puede ser null.Información recibida a través de la aplicación RHEI.';
+
+COMMENT ON COLUMN RHEI.MOV_ST_SOLIC_BEI.NU_TLF_FAM_RELAC IS 'Contiene el número telefónico del ascendiente del beneficiario de la solicitud Información suministrada por el trabajador. Con el objetivo de almacenar el número telefónico del ascendente del beneficiario de la solicitud.El tipo de datos es ''VARCHAR2'', de tamaño 20. Este campo puede ser null.Información recibida directamente a través del trabajador que realiza la solicitud.';
+
+
+
+CREATE INDEX RHEI.IX_MOV_ST_SOLIC_BEI_1 ON RHEI.MOV_ST_SOLIC_BEI
+(NU_SOLICITUD, CO_PERIODO)
+NOLOGGING
+TABLESPACE TSINDX01_128K
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL
+COMPRESS 2;
+
+
+CREATE UNIQUE INDEX RHEI.PK_MOV_ST_SOLIC_BEI ON RHEI.MOV_ST_SOLIC_BEI
+(NU_SOLICITUD, CO_STATUS, FE_STATUS)
+NOLOGGING
+TABLESPACE TSINDX01_128K
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL
+COMPRESS 2;
+
+
+ALTER TABLE RHEI.MOV_ST_SOLIC_BEI ADD (
+  CONSTRAINT CKC_CO_STATUS_MOV_ST_S
+  CHECK (CO_STATUS in ('A','R','C','D','M')),
+  CONSTRAINT CKC_IN_BENEF_COMPART_MOV_ST_S
+  CHECK (IN_BENEF_COMPART in ('S','N')),
+  CONSTRAINT CKC_IN_TIPO_EMPRESA_MOV_ST_S
+  CHECK (IN_TIPO_EMPRESA is null or (IN_TIPO_EMPRESA in ('0','1','2'))),
+  CONSTRAINT PK_MOV_ST_SOLIC_BEI
+  PRIMARY KEY
+  (NU_SOLICITUD, CO_STATUS, FE_STATUS)
+  USING INDEX RHEI.PK_MOV_ST_SOLIC_BEI);
+
+ALTER TABLE RHEI.MOV_ST_SOLIC_BEI ADD (
+  CONSTRAINT FK_MOV_ST_SOLIC_BEI_FACT 
+  FOREIGN KEY (CO_STATUS) 
+  REFERENCES RHEI.ST_SOLICITUD_BEI (CO_STATUS),
+  CONSTRAINT FK_MOV_ST_SOL_BEI_SOL 
+  FOREIGN KEY (NU_SOLICITUD) 
+  REFERENCES RHEI.SOLICITUD_BEI (NU_SOLICITUD),
+  CONSTRAINT FK_PE_ES_MO_ST_SO 
+  FOREIGN KEY (CO_PERIODO) 
+  REFERENCES RHEI.PERIODO_ESCOLAR (CO_PERIODO));
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON RHEI.MOV_ST_SOLIC_BEI TO ROLRHEI_ANALISTA;

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="demo_phones" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="48d84805-e33a-4962-a953-f66c3f49fc71">
+	<property name="ireport.zoom" value="2.593742460100004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\simon\\workspace\\rhei\\src\\ve\\org\\bcv\\rhei\\report\\by\\benef\\"]]></defaultValueExpression>
+	</parameter>
+	<field name="mesmtricula" class="java.lang.String"/>
+	<field name="montobcv" class="java.lang.Double"/>
+	<variable name="vmontobcv" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{montobcv}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="106" height="14" uuid="b303c8fc-bac1-4337-8c3a-9a283e265442"/>
+				<textFieldExpression><![CDATA[$F{mesmtricula}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="106" y="0" width="103" height="14" uuid="b5949d01-b245-404d-a0dd-879db0d32c19"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{montobcv}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="17">
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="215" y="2" width="77" height="15" uuid="9b645f88-18d9-4c0e-b92d-2d3b87e1dfa7"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{vmontobcv}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

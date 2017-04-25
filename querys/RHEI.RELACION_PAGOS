@@ -1,0 +1,146 @@
+ALTER TABLE RHEI.RELACION_PAGOS
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE RHEI.RELACION_PAGOS CASCADE CONSTRAINTS;
+
+CREATE TABLE RHEI.RELACION_PAGOS
+(
+  NU_SOLICITUD      NUMBER(20)                  NOT NULL,
+  NU_ID_FACTURA     NUMBER(14)                  NOT NULL,
+  IN_CONCEPTO_PAGO  NUMBER(1)                   DEFAULT 1                     NOT NULL,
+  IN_RECEPTOR_PAGO  NUMBER(1)                   DEFAULT 0                     NOT NULL,
+  NU_REF_PAGO       NUMBER(2)                   DEFAULT 1                     NOT NULL,
+  IN_TRAMITE        VARCHAR2(1 CHAR)            DEFAULT 'P'                   NOT NULL,
+  CO_MONEDA         CHAR(3 CHAR)                DEFAULT '044'                 NOT NULL,
+  FE_REG_PAGO       DATE                        NOT NULL,
+  MO_TOTAL_PAGO     NUMBER(12,2)                NOT NULL,
+  CO_PERIODO        NUMBER(2)                   NOT NULL,
+  CO_TI_PAGO        NUMBER(1)                   DEFAULT 1                     NOT NULL,
+  TX_OBSERVACIONES  VARCHAR2(100 CHAR),
+  CO_FORMA_PAGO     VARCHAR2(2 BYTE),
+  IN_COMPLEMENTO    CHAR(1 BYTE),
+  CO_REP_STATUS     NUMBER(4)
+)
+TABLESPACE TSDATA01_128K
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+COMPRESS FOR OLTP 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE RHEI.RELACION_PAGOS IS 'Contiene información de la relación de pagos, proveniente del Departamento de Bienestra Social, con el objetivo generar el reporte mensual de pagos a los Centros de educación inicial. Nro registros: 300 Frecuencia de Actualización: Mensual';
+
+COMMENT ON COLUMN RHEI.RELACION_PAGOS.NU_SOLICITUD IS 'Contiene información del código que identifica unívocamente una solicitud asociada a un trabajador que labora en el BCV. Proveniente de la unidad de Bienestar Social.Con el objetivo de codificar las diferentes solicitudes registradas por los empleados que laboran en el BCV para percibir el beneficio de educación inicial. Es un valor consecutivo que se incrementa en 1 en función de las solicitudes tramitadas . Datos será generado automáticamente, desde la Base de Datos.';
+
+COMMENT ON COLUMN RHEI.RELACION_PAGOS.NU_ID_FACTURA IS 'Contiene información del ID de la factura, proveniente del Centro de Educación Inicial, con el objetivo de identificar unívocamente el soporte para el pago al proveedor del Centro de Educación Inicial, ya que puede repetirse el número de factura por proveedor de educación inicial. ';
+
+COMMENT ON COLUMN RHEI.RELACION_PAGOS.IN_CONCEPTO_PAGO IS 'Código del concepto de pago efectuado a proveedores  de bienes y servicios por el BCV, asociado a la solicitud del proveedor. Este código es definido por el usuario. Con el fin de tipificar la razón de pago. Valores: 0: Pago de matrícula, 1: Pago de mensualidad Información registrada por el usuario según documento de pago del trabajador beneficiario.';
+
+COMMENT ON COLUMN RHEI.RELACION_PAGOS.IN_RECEPTOR_PAGO IS 'Contiene información sobre a quién va dirigido el pago registrado en el sistema. Proveniente del Sistema Integral de Recursos Humanos. Con el propósito de diferenciar los pagos que se le emiten a los Centros de Educación Inicial (CEI) y los pagos efectuados a los trabajadores por reembolso del mismo. Campo numérico con los siguientes posibles valores: 0 -> Centro de Educación Inicial (CEI), 1-> TrabajadorInformación recibida a través del S.I.R.H. ';
+
+COMMENT ON COLUMN RHEI.RELACION_PAGOS.NU_REF_PAGO IS 'Contiene informaci¢n de un n£mero proveniente del Departamento de Bienestrar Social, con el objetivo de se¤alar si el pago es de matr¡cula, o del mes de pago, Complemento, Reembolso, o pago por cheque.  Valores: 0: Matr¡cula 1: Enero 2: Febrero 3: Marzo 4: Abirl 5: Mayo 6: Junio 7: Julio 8: Agosto 9: Septiembre 10: Octubre 11: Noviembre 12: Diciembre.  Tambin podr¡n asignarse valores negativos en caso de que ya se haya pagado manualmente sin usar el sistema.';
+
+COMMENT ON COLUMN RHEI.RELACION_PAGOS.IN_TRAMITE IS 'Contiene información del inficador del trámite del pago, proveniente del Departamento de Bienestar Social, con el objetivo de  conocer si el trámite está pendiente o tramitado.    Valores: P: Pendiente  T: Tramitado ';
+
+COMMENT ON COLUMN RHEI.RELACION_PAGOS.CO_MONEDA IS 'Contiene información del código de moneda con el objetivo de identificar  la moneda,  con la cual se registró el ajuste  de la solicitud, de beneficio de educación inicial';
+
+COMMENT ON COLUMN RHEI.RELACION_PAGOS.FE_REG_PAGO IS 'Contiene información de la fecha del registro de pago, con el objetivo de almacenar la fecha del registro del concepto de pago. Información originada en el Sysdate de la máquina';
+
+COMMENT ON COLUMN RHEI.RELACION_PAGOS.MO_TOTAL_PAGO IS 'Contiene el monto total, expresados en bolívares fuertes, que el Banco Central de Venezuela (BCV) tendría que pagar por la factura. Registrado por el empleado en el departamento de Bienestar Social para la fecha de registro de la misma. ';
+
+COMMENT ON COLUMN RHEI.RELACION_PAGOS.CO_PERIODO IS 'Contiene el valor que identifica al período escolar asociado a los pagos realizados correspondientes a una solicitud del beneficio de educación inicial. Proveniente del Sistema Integral de Recursos Humanos.Con la finalidad de referenciar a un período escolar. Constituido por un valor numérico de tipo entero de hasta 2 dígitos. Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.RELACION_PAGOS.CO_TI_PAGO IS 'Contiene información que indica el código que identifica a un tipo de pago específico. Proveniente del Sistema Integral de Recursos Humanos. Con la finalidad identificar al tipo de pago. Sus valores son números enteros compuestos por un dígito. Inicialmente se definen los siguientes tipos de pagos: 1: Convencional, 2: Ajuste y 3: Prorrateo. Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.RELACION_PAGOS.TX_OBSERVACIONES IS 'Contiene información sobre el registro de un pago.Proveniente del Sistema Integral de Recursos Humanos.Con la finalidad detallar el pago registrado en el sistema.Está compuesto por una cadena de máximo 100 caracteres. Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.RELACION_PAGOS.CO_FORMA_PAGO IS 'C¢digo determinado por el administrador del sistema que indica la forma o modalidad de pago al proveedor de bienes y servicios convenida con el BCV. Este c¢digo es definido por el usuario del Departamento de Habilitadur¡a';
+
+COMMENT ON COLUMN RHEI.RELACION_PAGOS.IN_COMPLEMENTO IS 'Contiene informaci¢n de un valor booleano que indica que es un complemento.';
+
+COMMENT ON COLUMN RHEI.RELACION_PAGOS.CO_REP_STATUS IS 'Contiene inforamci¢n del estatus del numero de solicitud relacionado con cada reporte.';
+
+
+
+CREATE INDEX RHEI.IX_RELACION_PAGOS_SOL ON RHEI.RELACION_PAGOS
+(NU_SOLICITUD, CO_PERIODO)
+NOLOGGING
+TABLESPACE TSINDX01_128K
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL
+COMPRESS 2;
+
+
+CREATE UNIQUE INDEX RHEI.PK_RELACION_PAGOS ON RHEI.RELACION_PAGOS
+(NU_SOLICITUD, NU_ID_FACTURA, IN_CONCEPTO_PAGO, IN_RECEPTOR_PAGO, NU_REF_PAGO)
+NOLOGGING
+TABLESPACE TSINDX01_128K
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL
+COMPRESS 4;
+
+
+ALTER TABLE RHEI.RELACION_PAGOS ADD (
+  CONSTRAINT CHK_IN_COMPLEMENTO
+  CHECK (IN_COMPLEMENTO is null or (IN_COMPLEMENTO in ('S','N'))),
+  CONSTRAINT CKC_IN_CONCEPTO_PAGO_RELACION
+  CHECK (IN_CONCEPTO_PAGO in (0,1)),
+  CONSTRAINT CKC_IN_RECEPTOR_PAGO_RELACION
+  CHECK (IN_RECEPTOR_PAGO in (0,1)),
+  CONSTRAINT CKC_IN_TRAMITE_RELACION
+  CHECK (IN_TRAMITE in ('P','T')),
+  CONSTRAINT PK_RELACION_PAGOS
+  PRIMARY KEY
+  (NU_SOLICITUD, NU_ID_FACTURA, IN_CONCEPTO_PAGO, IN_RECEPTOR_PAGO, NU_REF_PAGO)
+  USING INDEX RHEI.PK_RELACION_PAGOS);
+
+ALTER TABLE RHEI.RELACION_PAGOS ADD (
+  CONSTRAINT FK_PER_ES_RE_PA 
+  FOREIGN KEY (CO_PERIODO) 
+  REFERENCES RHEI.PERIODO_ESCOLAR (CO_PERIODO),
+  CONSTRAINT FK_RELACION_FK_DET_SO_FACTURA 
+  FOREIGN KEY (NU_ID_FACTURA) 
+  REFERENCES RHEI.FACTURA (NU_ID_FACTURA),
+  CONSTRAINT FK_RELACION_FK_DET_SO_SOLICITU 
+  FOREIGN KEY (NU_SOLICITUD) 
+  REFERENCES RHEI.SOLICITUD_BEI (NU_SOLICITUD),
+  CONSTRAINT FK_RELACION_REFERENCE_REPORTE_ 
+  FOREIGN KEY (CO_REP_STATUS) 
+  REFERENCES RHEI.REPORTE_STATUS (CO_REP_STATUS),
+  CONSTRAINT FK_REL_PAG_TI_PAGO 
+  FOREIGN KEY (CO_TI_PAGO) 
+  REFERENCES RHEI.TIPO_PAGO (CO_TI_PAGO));
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON RHEI.RELACION_PAGOS TO ROLRHEI_ANALISTA;

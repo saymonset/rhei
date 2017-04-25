@@ -1,0 +1,98 @@
+ALTER TABLE RHEI.PARAMETRO
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE RHEI.PARAMETRO CASCADE CONSTRAINTS;
+
+CREATE TABLE RHEI.PARAMETRO
+(
+  CO_COMPANIA         VARCHAR2(2 CHAR)          NOT NULL,
+  TIPO_EMP            VARCHAR2(3 CHAR)          NOT NULL,
+  CO_TIPO_BENEFICIO   VARCHAR2(4 CHAR)          NOT NULL,
+  CO_PARAMETRO        VARCHAR2(30 BYTE)         NOT NULL,
+  FE_VIGENCIA         DATE                      NOT NULL,
+  TX_VALOR_PARAMETRO  VARCHAR2(200 CHAR)        NOT NULL,
+  IN_TIPO_PARAMETRO   VARCHAR2(1 CHAR)          DEFAULT 'C'                   NOT NULL,
+  TX_OBSERVACIONES    VARCHAR2(200 CHAR)        NOT NULL,
+  IN_ST_PROCESAMIENT  VARCHAR2(1 CHAR)          DEFAULT 'N'                   NOT NULL
+)
+TABLESPACE TSDATA01_128K
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+COMPRESS FOR OLTP 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE RHEI.PARAMETRO IS 'Contiene información de los parámetros definidos en las aplicaciones realizadas por la Coordinación Funcional de Recursos HumanosSuministrada por la Coordinación Funcional de Recursos Humanos.Tiene como finalidad  minimizar el uso de código duro en las aplicaciones o sistemas desarrollados, haciendo la tarea de mejoras o cambios más fáciles y flexibles.La información registrada  proviene de las propuestas generadas por la Coordinación Funcional de Recursos Humanos.Su actualización se realiza semestraln veces en el semestre a ejecutarNo es Interfaz.';
+
+COMMENT ON COLUMN RHEI.PARAMETRO.CO_COMPANIA IS 'Contiene información que identifica a la compañía para la cual es válido el parámetro. Proveniente del Sistema Integral de Recursos Humanos.Con el objetivo de asociar el uso del parámetro a una compañía particular o a todas las compañías.Los posibles valores son: ''01'' (Caracas), ''02''  (Maracaibo), ''03'' (Maracay), ''%'' (Todas las compañías) Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.PARAMETRO.TIPO_EMP IS 'Contiene información que identifica al tipo de empleado para el cual es válido el parámetro. Proveniente del Sistema Integral de Recursos Humanos.Con el objetivo de asociar el uso del parámetro a un tipo de empleado particular o a todos los tipos de empleados.Los posibles valores son : ''EMP'', ''CON'', ''OBR'', ''CBR'', ''JUB'', ''EJE'', ''%'' (Aplica para todos los empleados)Información recibida a través del S.I.R.H.
+';
+
+COMMENT ON COLUMN RHEI.PARAMETRO.CO_TIPO_BENEFICIO IS 'Contiene el código que identifica al tipo de beneficio que define el parámetro. Proveniente del Sistema Integral de Recursos Humanos.Con el objetivo de codificar los tipos de beneficios que define el parámetro.Conformado por una cadena de 4 carateres.Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.PARAMETRO.CO_PARAMETRO IS 'Contiene información de el monto para el bono de alimentación de la jornada simple de la formulación anterior para el personal regular obrero. Proveniente del Sistema Integral de Recursos Humanos.Con el objetivo de realizar a traves del monto total pagado por ese concepto en el año al trabajador la cantidad de pagos realizado.Los posibles valores son enteros positivos diferentes a cero.Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.PARAMETRO.FE_VIGENCIA IS 'Contiene la fecha de registro del parámetro.Proveniente del Sistema Integral de Recursos Humanos.Con la finalidad definir la fecha a partir de la cual el parámetro está vigente.Está constituido por un timestamp (fecha hora).Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.PARAMETRO.TX_VALOR_PARAMETRO IS 'Contiene el valor del parámetro.Proveniente del Sistema Integral de Recursos Humanos.Con la finalidad almacenar el valor del parámetro.Conformado por una cadena de hasta 200 carateres.Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.PARAMETRO.IN_TIPO_PARAMETRO IS 'Contiene información del tipo de dato a que se refiere el parámetro.Proveniente del Sistema Integral de Recursos Humanos.Con la finalidad de informar el tipo de dato al que hace referencia el parámetro.Sus posibles valores son: `N¿ para indicar un valor numérico,  `F¿ para indicar un valor de tipo fecha y  `C¿ para indicar un valor de tipo cadena de caracteres. Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.PARAMETRO.TX_OBSERVACIONES IS 'Contiene información que describe el uso del parámetro.Proveniente del Sistema Integral de Recursos Humanos.Con la finalidad de informar sobre el uso que debe darsele al parámetro.Conformado por una cadena de hasta 200 carateres.Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.PARAMETRO.IN_ST_PROCESAMIENT IS 'Contiene información que indica el status de procesamiento del parámetro.Proveniente del Sistema Integral de Recursos Humanos.Con la finalidad corroborar si el parámetro ha sido procesado.Sus posibles valores son: N para indicar que no aplica para el parámetro (valor por defecto),  P para indicar que está pendiente el procesamiento del parámetro y  E para indicar que fue procesado el parámetro.Información recibida a través del S.I.R.H.';
+
+
+
+CREATE UNIQUE INDEX RHEI.PK_PARAMETRO ON RHEI.PARAMETRO
+(CO_COMPANIA, TIPO_EMP, CO_TIPO_BENEFICIO, CO_PARAMETRO, FE_VIGENCIA)
+NOLOGGING
+TABLESPACE TSINDX01_128K
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL
+COMPRESS 4;
+
+
+ALTER TABLE RHEI.PARAMETRO ADD (
+  CONSTRAINT CHK_CO_COMP_PARAM
+  CHECK (CO_COMPANIA in ('01','02','03','%')),
+  CONSTRAINT CHK_IN_ST_PROC
+  CHECK (IN_ST_PROCESAMIENT IN ('N','E','P')),
+  CONSTRAINT CHK_IN_TIP_PAR_PAR
+  CHECK (IN_TIPO_PARAMETRO in ('N','F','C')),
+  CONSTRAINT CHK_TIPO_EMP_PARA
+  CHECK (TIPO_EMP in ('EMP','CON','OBR','JUB','OBC','EJE','%')),
+  CONSTRAINT PK_PARAMETRO
+  PRIMARY KEY
+  (CO_COMPANIA, TIPO_EMP, CO_TIPO_BENEFICIO, CO_PARAMETRO, FE_VIGENCIA)
+  USING INDEX RHEI.PK_PARAMETRO);
+
+ALTER TABLE RHEI.PARAMETRO ADD (
+  CONSTRAINT FK_BENE_ES_PARA 
+  FOREIGN KEY (CO_TIPO_BENEFICIO) 
+  REFERENCES RHEI.BENEFICIO_ESCOLAR (CO_TIPO_BENEFICIO));
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON RHEI.PARAMETRO TO ROLRHEI_ANALISTA;

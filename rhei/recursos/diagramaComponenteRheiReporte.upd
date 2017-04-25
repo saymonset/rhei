@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ComponentDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="diagramaComponenteRheiReporte" id="{UMLID=_ockEoDnjEeCiV8EvzV7_7g,JavaID=}" metadata="uml2-1.0" initialized="true" tag="10" key="32303037303632392072686569">
+  <children xsi:type="editmodel:ComponentInterfaceEditModel" targetConnections="//@children.1/@sourceConnections.0" name="Menú Reporte" location="127,148" size="74,31" id="{UMLID=_q2m1QDnPEeCRxaQkkP6IHA}" interfaceName="Menú Reporte"/>
+  <children xsi:type="editmodel:ComponentEditModel" name="Gestion Reporte" location="420,134" size="105,45" stereotype="component" taggedValues="{profile.object.name=Gestión Reporte}" id="{UMLID=_vRSQ0DnPEeCRxaQkkP6IHA}" itemName="Gestion Reporte">
+    <sourceConnections xsi:type="editmodel:ComponentAssociationEditModel" name="realiza" autoLocated="true" id="{UMLID=_zi4B0DnPEeCRxaQkkP6IHA}" source="//@children.1" target="//@children.0" targetEnd="//@children.1/@sourceConnections.0/@children.1" label="//@children.1/@sourceConnections.0/@children.2" sourceEnd="//@children.1/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:ComponentEndEditModel" name="Menu Reporte" location="0,20" id="{UMLID=_zjBLwDnPEeCRxaQkkP6IHA}" attachSource="true"/>
+      <children xsi:type="editmodel:ComponentEndEditModel" name="Menú Reporte" location="14,6" id="{UMLID=_zi4B0TnPEeCRxaQkkP6IHA}" roleLabel="//@children.1/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="+ Menú Reporte" location="88,133" size="76,14" fontInfo="Arial-8-0" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" name="realiza" size="32,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" name="genera reporte" size="2,1" autoLocated="true" id="{UMLID=_VxfnQDnQEeCRxaQkkP6IHA}" source="//@children.1" target="//@children.2" targetEnd="//@children.1/@sourceConnections.1/@children.1" label="//@children.1/@sourceConnections.1/@children.2" sourceEnd="//@children.1/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:ComponentEndEditModel" location="105,35" attachSource="true"/>
+      <children xsi:type="editmodel:ComponentEndEditModel" location="10,0"/>
+      <children xsi:type="editmodel:WireLabelEditModel" name="genera reporte" location="560,181" size="72,14" fontInfo="Arial-8-0" automaticRelocationAllowed="false" locationOnWireFromSource="63.00000000000001" distanceFromWire="-19.999999999999954" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" name="conexión a BD" size="2,1" autoLocated="true" id="{UMLID=_ay6SsDnQEeCRxaQkkP6IHA}" source="//@children.1" target="//@children.3" targetEnd="//@children.1/@sourceConnections.2/@children.1" label="//@children.1/@sourceConnections.2/@children.2" sourceEnd="//@children.1/@sourceConnections.2/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:ComponentEndEditModel" location="0,35" attachSource="true"/>
+      <children xsi:type="editmodel:ComponentEndEditModel" location="312,0"/>
+      <children xsi:type="editmodel:WireLabelEditModel" name="conexión a BD" location="308,182" size="70,14" fontInfo="Arial-8-0" automaticRelocationAllowed="false" locationOnWireFromSource="64.99999999999999" distanceFromWire="20.000000000000046" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:IndicationEditModel" autoLocated="true" source="//@children.1" target="//@children.5" targetEnd="//@children.1/@sourceConnections.3/@children.1" sourceEnd="//@children.1/@sourceConnections.3/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:ComponentEndEditModel" location="52,0" attachSource="true"/>
+      <children xsi:type="editmodel:ComponentEndEditModel" location="67,57"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.1" name="GeneradorReportes" location="532,238" size="360,27" timstampe="5820" id="{UMLID=_vtW8QDnkEeCiV8EvzV7_7g,JavaID=ve.org.bcv.rhei.controlador/GeneradorReportes}" shortShow="true" runTimeClassModel="con,init(Ljavax.servlet.ServletConfig;),sc,serialVersionUID,GeneradorReportes(),doPost(Ljavax.servlet.http.HttpServletRequest;Ljavax.servlet.http.HttpServletResponse;),log,doGet(Ljavax.servlet.http.HttpServletRequest;Ljavax.servlet.http.HttpServletResponse;),manejador,reporte">
+    <children xsi:type="editmodel:CompartmentEditModel" size="367,90"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="136,72"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" name="colabora" size="2,1" autoLocated="true" id="{UMLID=_TYTiUDnQEeCRxaQkkP6IHA}" source="//@children.2" target="//@children.4" targetEnd="//@children.2/@sourceConnections.0/@children.1" label="//@children.2/@sourceConnections.0/@children.2" sourceEnd="//@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:ComponentEndEditModel" location="160,27" attachSource="true"/>
+      <children xsi:type="editmodel:ComponentEndEditModel" location="132,0"/>
+      <children xsi:type="editmodel:WireLabelEditModel" name="colabora" size="42,14" fontInfo="Arial-8-0" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.2" name="ManejadorDB" location="84,238" size="322,27" timstampe="67" id="{UMLID=_vHVTgTnjEeCiV8EvzV7_7g,JavaID=ve.org.bcv.rhei.controlador/ManejadorDB}" shortShow="true" runTimeClassModel="con,conexion(),ManejadorDB(),data,serialVersionUID,contexto">
+    <children xsi:type="editmodel:CompartmentEditModel" size="165,72"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="104,36"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@sourceConnections.0" name="ScriptletsMei" location="560,350" size="265,27" timstampe="10" id="{UMLID=_gvbScDnmEeCiV8EvzV7_7g,JavaID=ve.org.bcv.rhei.util/ScriptletsMei}" shortShow="true" runTimeClassModel="mostrarFiltrosMei23(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),convertirMesALetras(I),calcularPeriodoEscolar(II),mostrarFiltrosMei156(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),convertirConceptoEnLetras(I),mostrarFiltrosMei7(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="172,108"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true"/>
+  </children>
+  <children xsi:type="editmodel:NotepadEditModel" targetConnections="//@children.1/@sourceConnections.3" foregroundRGB="91,91,0" location="405,42" size="435,57" fontInfo="Arial-8-0" note="Este componente utiliza las siguientes librería para trabajar con las clases de ireport: &#xD;&#xA;commons-logging-1.1.jar&#xD;&#xA;jasperreport-3.7.4.jar"/>
+  <diagramOptions xsi:type="options:ComponentDiagramOptions" level="0" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="14,14" gridOrigin="0,0" rulerUnit="cm" gridShow="true">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+</editmodel:ComponentDiagramEditModel>

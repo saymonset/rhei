@@ -1,0 +1,73 @@
+ALTER TABLE RHEI.PERIODO_ESCOLAR
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE RHEI.PERIODO_ESCOLAR CASCADE CONSTRAINTS;
+
+CREATE TABLE RHEI.PERIODO_ESCOLAR
+(
+  CO_PERIODO          NUMBER(2)                 NOT NULL,
+  TX_DESCRIP_PERIODO  VARCHAR2(9 CHAR)          NOT NULL,
+  FE_INICIO           DATE                      NOT NULL,
+  FE_FIN              DATE                      NOT NULL,
+  IN_PERIODO_ESCOLAR  CHAR(1 CHAR)              DEFAULT 'A'                   NOT NULL
+)
+TABLESPACE TSDATA01_128K
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+COMPRESS FOR OLTP 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE RHEI.PERIODO_ESCOLAR IS 'Contiene información referente a los períodos escolaresSuministrada por la Coordinación Funcional de Recursos Humanos.Tiene como finalidad almacenar el formato utilizado para definir el período escolar así como las fechas que lo limitan.La información registrada  proviene de las propuestas generadas por la Coordinación Funcional de Recursos Humanos.Su actualización se realiza semestral1 veces en el semestre a ejecutarNo es Interfaz.';
+
+COMMENT ON COLUMN RHEI.PERIODO_ESCOLAR.CO_PERIODO IS 'Contiene el valor que identifica a un período escolar.Proveniente del Sistema Integral de Recursos Humanos.Con la finalidad de referenciar a un período escolar. Constituido por un valor numérico de tipo entero de hasta 2 dígitos. Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.PERIODO_ESCOLAR.TX_DESCRIP_PERIODO IS 'Contiene la información que identifica a un período escolar.Proveniente del Sistema Integral de Recursos Humanos.Con la finalidad de indicar el formato utilizado para definir un período escolar. Conformado por una cadena de hasta 9 carateres.Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.PERIODO_ESCOLAR.FE_INICIO IS 'Contiene información del inicio de un período escolar.Proveniente del Sistema Integral de Recursos Humanos.Con la finalidad de indicar la fecha de inicio de un período escolar. Conformado por un dato de tipo Date Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.PERIODO_ESCOLAR.FE_FIN IS 'Contiene información del final de un período escolar.Proveniente del Sistema Integral de Recursos Humanos.Con la finalidad de indicar la fecha de finalización de un período escolar. Conformado por un dato de tipo Date Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.PERIODO_ESCOLAR.IN_PERIODO_ESCOLAR IS 'Contiene información un indicador utilizado para identificar el periodo escolar activo. Proveniente del Sistema Integral de Recursos Humanos. Con el objetivo de referenciar si el perodo escolar está activo o no.Sus posibles valores son: A: Activo, I: Inactivo. Información recibida a través del S.I.R.H.';
+
+
+
+CREATE UNIQUE INDEX RHEI.PK_PERIODO_ESCOLAR ON RHEI.PERIODO_ESCOLAR
+(CO_PERIODO)
+NOLOGGING
+TABLESPACE TSINDX01_128K
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+ALTER TABLE RHEI.PERIODO_ESCOLAR ADD (
+  CONSTRAINT CHK_IN_PERIODO_ESCOLA_PERIODO
+  CHECK (IN_PERIODO_ESCOLAR in ('A','I')),
+  CONSTRAINT PK_PERIODO_ESCOLAR
+  PRIMARY KEY
+  (CO_PERIODO)
+  USING INDEX RHEI.PK_PERIODO_ESCOLAR);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON RHEI.PERIODO_ESCOLAR TO ROLRHEI_ANALISTA;

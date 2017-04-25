@@ -1,0 +1,101 @@
+ALTER TABLE RHEI.SOLICITUD_BEI
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE RHEI.SOLICITUD_BEI CASCADE CONSTRAINTS;
+
+CREATE TABLE RHEI.SOLICITUD_BEI
+(
+  NU_SOLICITUD       NUMBER(20)                 NOT NULL,
+  FE_SOLICITUD       DATE                       NOT NULL,
+  CO_EMPLEADO        NUMBER(6)                  NOT NULL,
+  CEDULA_FAMILIAR    NUMBER(8)                  NOT NULL,
+  NU_RIF_PROVEEDOR   VARCHAR2(14 CHAR)          NOT NULL,
+  IN_TP_EDUCACION    VARCHAR2(1 CHAR)           DEFAULT 'R'                   NOT NULL,
+  IN_PROV_CONVENIDO  VARCHAR2(1 CHAR)           DEFAULT 'N'                   NOT NULL,
+  IN_PERIOD_PAGO     VARCHAR2(1 CHAR)           DEFAULT '1'                   NOT NULL,
+  IN_LOCALIDAD_CEI   VARCHAR2(1 CHAR)           DEFAULT 'C'                   NOT NULL,
+  TI_NOMINA          VARCHAR2(3 CHAR)           DEFAULT 'REG'                 NOT NULL
+)
+TABLESPACE TSDATA01_128K
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+COMPRESS FOR OLTP 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE RHEI.SOLICITUD_BEI IS 'Contiene la  información correspondiente al detalle de cada solicitud registrada. Proveniente de la unidad de Bienestar Social. Con el propósito  proporcionar las características  de cada solicitud para el otorgamiento del beneficio de educación inicial. Información originada en el formato o planilla que maneja la unidad de trabajo social para registrar las solicitudes del beneficio. Su periodicidad de actualización es anual. Su frecuencia es 1 vez .No es Interfaz.';
+
+COMMENT ON COLUMN RHEI.SOLICITUD_BEI.NU_SOLICITUD IS 'Contiene información del código que identifica unívocamente una solicitud asociada a un trabajador que labora en el BCV. Proveniente de la unidad de Bienestar Social.Con el objetivo de codificar las diferentes solicitudes registradas por los empleados que laboran en el BCV para percibir el beneficio de educación inicial.Es un valor consecutivo que se incrementa en 1 en función de las solicitudes tramitadas . Datos será generado automáticamente, desde la Base de Datos.';
+
+COMMENT ON COLUMN RHEI.SOLICITUD_BEI.FE_SOLICITUD IS 'Contiene la fecha en la cual se realiza la solicitud y forma parte de la clave primaria de la tabla. Proveniente de la unidad de Bienestar Social. Con el objetivo de llevar un registro temporal de las solicitudes.Está compuesto por dia, mes y año (dd-mm-yyyy). Generada automáticamente con el Sysdate de la máquina.';
+
+COMMENT ON COLUMN RHEI.SOLICITUD_BEI.CO_EMPLEADO IS 'Contiene información del código de identificación del empleado asociado a la solicitud del beneficio de educación inicial. Proveniente de la unidad de Bienestar Social.Con el objetivo de asociar al empleado que realizó la solicitud del beneficio. Este código es heredado de la nómina';
+
+COMMENT ON COLUMN RHEI.SOLICITUD_BEI.CEDULA_FAMILIAR IS 'Contiene el código de identificación del familiar asociado a la solicitud del beneficio de educación inicial. Proveniente de la unidad de Bienestar Social. Con el objetivo de asociar al familiar del empleado objeto del beneficio. Proviene de la tabla de familiares calificados';
+
+COMMENT ON COLUMN RHEI.SOLICITUD_BEI.NU_RIF_PROVEEDOR IS 'Contiene el número de registro fiscal del proveedor de bienes y servicios del BCV. Información proveniente del Departamento de Pagos y Tributos';
+
+COMMENT ON COLUMN RHEI.SOLICITUD_BEI.IN_TP_EDUCACION IS 'Contiene el tipo de educación proporcionado por el proveedor educativo al familiar beneficiario.Proveniente de la unidad de Bienestar Social. Con el objetivo definir el tipo de servicio educativo necesitado. Los posibles valores son: R (Regular) ó E (Especial). Proveniente de formulario';
+
+COMMENT ON COLUMN RHEI.SOLICITUD_BEI.IN_PROV_CONVENIDO IS 'Contiene la información acerca de si el proveedor educativo es convenido o no lo es. Proveniente de la unidad de Bienestar Social.Con el objetivo de conocer si el proveedor educativo mantiene un convenio con el Banco Central de Venezuela.Valores: S: Si es convenido N: No es convenido';
+
+COMMENT ON COLUMN RHEI.SOLICITUD_BEI.IN_PERIOD_PAGO IS 'Contiene el lapso o período de pago al proveedor educativoProveniente de la unidad de Bienestar Social.Con el objetivo de definir el período de pago asociado a la solicitud.Valores: 1: Mensual  2: Bimensual 3: Trimestral 4: Cuatrimestral  5: Semestral 6: Anual';
+
+COMMENT ON COLUMN RHEI.SOLICITUD_BEI.IN_LOCALIDAD_CEI IS 'Contiene información que identifica la localización del Centro de Educación Inicial (CEI). Proveniente del Sistema Integral de Recursos Humanos.Con el objetivo de asociar la localidad del Centro de Educación Inicial (CEI) a la solicitud del beneficio escolar.El tipo de datos es ''VARCHAR2'', de tamaño 1. Los posibles valores son: ''C'' (Caracas) ---> valor por defecto, ''M''(Maracaibo) ó ''Y''(Maracay)Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.SOLICITUD_BEI.TI_NOMINA IS 'Contiene información que identifica al tipo de nómina asociado al trabajadorProveniente del Sistema Integral de Recursos Humanos.Con el objetivo identificar la nómina a la cual pertenece el trabajador.Los posibles valores son: ''REG'' (Regular), ''EJE''  (Ejecutiva)Información recibida a través del S.I.R.H.';
+
+
+
+CREATE UNIQUE INDEX RHEI.PK_SOLICITUD_BEI ON RHEI.SOLICITUD_BEI
+(NU_SOLICITUD)
+NOLOGGING
+TABLESPACE TSINDX01_128K
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+ALTER TABLE RHEI.SOLICITUD_BEI ADD (
+  CONSTRAINT CHK_IN_LOCALID_CEI
+  CHECK (IN_LOCALIDAD_CEI in ('C','Y','M')),
+  CONSTRAINT CHK_TI_NOMINA
+  CHECK (TI_NOMINA in ('REG','EJE')),
+  CONSTRAINT CKC_IN_PERIOD_PAGO_SOLICITU
+  CHECK (IN_PERIOD_PAGO in ('1','2','3','4','5','6')),
+  CONSTRAINT CKC_IN_PROV_CONVENIDO_SOLICITU
+  CHECK (IN_PROV_CONVENIDO in ('S','N')),
+  CONSTRAINT CKC_IN_TP_EDUCACION_SOLICITU
+  CHECK (IN_TP_EDUCACION in ('R','E')),
+  CONSTRAINT PK_SOLICITUD_BEI
+  PRIMARY KEY
+  (NU_SOLICITUD)
+  USING INDEX RHEI.PK_SOLICITUD_BEI);
+
+ALTER TABLE RHEI.SOLICITUD_BEI ADD (
+  CONSTRAINT FK_SOLICITU_FK_SOLICI_BENEFICI 
+  FOREIGN KEY (CO_EMPLEADO, CEDULA_FAMILIAR) 
+  REFERENCES RHEI.BENEFICIARIO_EI (CO_EMPLEADO,CEDULA_FAMILIAR));
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON RHEI.SOLICITUD_BEI TO ROLRHEI_ANALISTA;

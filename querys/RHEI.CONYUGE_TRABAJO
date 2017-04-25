@@ -1,0 +1,74 @@
+ALTER TABLE RHEI.CONYUGE_TRABAJO
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE RHEI.CONYUGE_TRABAJO CASCADE CONSTRAINTS;
+
+CREATE TABLE RHEI.CONYUGE_TRABAJO
+(
+  CO_CONYUGE      NUMBER(10)                    NOT NULL,
+  CI_CONYUGE      NUMBER(8)                     NOT NULL,
+  NB_EMPRESA      VARCHAR2(20 BYTE),
+  NU_TLF_EMPRESA  VARCHAR2(20 BYTE),
+  TX_CORREO_CONY  VARCHAR2(55 BYTE),
+  NU_TLF_TRABAJO  VARCHAR2(20 BYTE)
+)
+TABLESPACE TSDATA04
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE RHEI.CONYUGE_TRABAJO IS 'Contiene informaci¢n de datos adicionales del trabajo del conyuge.  Al gunos de los datos del c¢nyuge se encuentran en PERSONAL.FAMILIARES.';
+
+COMMENT ON COLUMN RHEI.CONYUGE_TRABAJO.CO_CONYUGE IS 'Contiene informaci¢n de un c¢digo referente a secuencia de la tabla, asignado como c¢digo del c¢nyuge-';
+
+COMMENT ON COLUMN RHEI.CONYUGE_TRABAJO.CI_CONYUGE IS 'Contiene informaci¢n referente a cedula del conyuge';
+
+COMMENT ON COLUMN RHEI.CONYUGE_TRABAJO.NB_EMPRESA IS 'Contiene informaci¢n referente a nombre de la empresa donde trabaja el conyuge';
+
+COMMENT ON COLUMN RHEI.CONYUGE_TRABAJO.NU_TLF_EMPRESA IS 'Contiene informaci¢n referente a telefono de la empresa donde trabaja el conyuge';
+
+COMMENT ON COLUMN RHEI.CONYUGE_TRABAJO.TX_CORREO_CONY IS 'Contiene informaci¢n referente a correo del conyuge';
+
+COMMENT ON COLUMN RHEI.CONYUGE_TRABAJO.NU_TLF_TRABAJO IS 'Contiene informaci¢n referente a telefono del trabajo del conyuge';
+
+
+
+CREATE UNIQUE INDEX RHEI.PK_CONYUGE_TRABAJO ON RHEI.CONYUGE_TRABAJO
+(CO_CONYUGE)
+LOGGING
+TABLESPACE TSDATA04
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+ALTER TABLE RHEI.CONYUGE_TRABAJO ADD (
+  CONSTRAINT PK_CONYUGE_TRABAJO
+  PRIMARY KEY
+  (CO_CONYUGE)
+  USING INDEX RHEI.PK_CONYUGE_TRABAJO);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON RHEI.CONYUGE_TRABAJO TO ROLRHEI_ANALISTA;

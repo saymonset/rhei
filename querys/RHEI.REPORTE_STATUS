@@ -1,0 +1,83 @@
+ALTER TABLE RHEI.REPORTE_STATUS
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE RHEI.REPORTE_STATUS CASCADE CONSTRAINTS;
+
+CREATE TABLE RHEI.REPORTE_STATUS
+(
+  CO_REP_STATUS       NUMBER(4)                 NOT NULL,
+  NB_REP_STATUS       VARCHAR2(300 BYTE)        NOT NULL,
+  ST_REPORTE          VARCHAR2(2 BYTE)          NOT NULL,
+  NB_TIPO             VARCHAR2(100 BYTE),
+  NB_FIRMA_REPORTE    VARCHAR2(100 BYTE),
+  NB_ABREV_REPORTE    VARCHAR2(100 BYTE),
+  NB_COORD_ADMINIST   VARCHAR2(100 BYTE),
+  NB_UNIDAD_CONTABIL  VARCHAR2(100 BYTE),
+  NB_COORD_BENEF_SOC  VARCHAR2(100 BYTE)
+)
+TABLESPACE TSDATA04
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE RHEI.REPORTE_STATUS IS 'COntiene inforamci¢n de los estatus de reportes que tendra dos fases, una preliminar y una definitiva';
+
+COMMENT ON COLUMN RHEI.REPORTE_STATUS.CO_REP_STATUS IS 'Contiene informaci¢n referente a secuencia de la tabla';
+
+COMMENT ON COLUMN RHEI.REPORTE_STATUS.NB_REP_STATUS IS 'Contiene informaci¢n referente a nombre del reporte';
+
+COMMENT ON COLUMN RHEI.REPORTE_STATUS.ST_REPORTE IS 'Contiene informaci¢n referente a estatus del reporte';
+
+COMMENT ON COLUMN RHEI.REPORTE_STATUS.NB_TIPO IS 'Contiene informaci�n referente al tipo de reporte a generar.';
+
+COMMENT ON COLUMN RHEI.REPORTE_STATUS.NB_FIRMA_REPORTE IS 'Contiene informaci�n del nombre de  la persona que va a firmar el reporte';
+
+COMMENT ON COLUMN RHEI.REPORTE_STATUS.NB_ABREV_REPORTE IS 'Contiene informaci�n  de la abreviatura de los entes responsables del reporte.';
+
+COMMENT ON COLUMN RHEI.REPORTE_STATUS.NB_COORD_ADMINIST IS 'Contiene informaci�n del nombre de la persona que ocupa el cargo administrativo de la coordinacion';
+
+COMMENT ON COLUMN RHEI.REPORTE_STATUS.NB_UNIDAD_CONTABIL IS 'Contiene informaci�n del nombre de la persona que ocupa el cargo de la unidad contabilidad.';
+
+COMMENT ON COLUMN RHEI.REPORTE_STATUS.NB_COORD_BENEF_SOC IS 'Contiene informaci�n del nombre de la persona que ocupa el cargo de Coordinacion de Beneficios Socioeconomicos';
+
+
+
+CREATE UNIQUE INDEX RHEI.PK_REPORTE_STATUS ON RHEI.REPORTE_STATUS
+(CO_REP_STATUS)
+LOGGING
+TABLESPACE TSDATA04
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+ALTER TABLE RHEI.REPORTE_STATUS ADD (
+  CONSTRAINT PK_REPORTE_STATUS
+  PRIMARY KEY
+  (CO_REP_STATUS)
+  USING INDEX RHEI.PK_REPORTE_STATUS);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON RHEI.REPORTE_STATUS TO ROLRHEI_ANALISTA;

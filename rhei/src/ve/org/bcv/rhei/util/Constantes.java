@@ -1,0 +1,82 @@
+package ve.org.bcv.rhei.util;
+
+public interface Constantes {
+	int paginas=50;
+	  int REEMBOLSO_COMPLEMENTO=1;
+	  int REEMBOLSO_COMPLEMENTO_NU_REF_PAGO=13;
+	  int CHEQUE=1;
+	  int AVISO_CREDITO=2;
+	  String CHEQUE_STR="Cheque";
+	  String AVISO_CREDITO_STR="Aviso Credito";
+	  int MATRICULA_PAGADA=-14;
+	  String MATRICULA_KEY="14";
+	  String MATRICULA="MATRICULA";
+	  int COMPLEMENTO=1;
+	  String SEPARADORENTRENUMSOLINOMBRE="->";
+	 String TIPOBENEFICIO = "RHEI";
+	 String PARENTESCO = "D";/**DESCENDIENTE*/
+	 String CONYUGE = "C";/**DESCENDIENTE*/
+	 String STATUS = "A";
+	 String CO_STATUS_ACTIVO = "A";
+	 String CO_STATUS_DESINCORPORADO = "D";
+	 String NOMBREPARAMETRO = "MTOBCV";
+	// String MONTO_UTILES = "MTOUTILES";
+	 String INCLUIR="1";
+	 String CONSULTAR="2";
+	 String ACTUALIZAR="3";
+	 String DESINCORPORAR="4";
+	 String PAGOCONVENCIONAL="5";
+	 String DISABLED=" disabled ";
+	 String PAGOCONSULTAR="6";
+	 String PAGOACTUALIZAR="7";
+	 String REPORTE_BENEF="8";
+	 String EXITO="exito";
+	 String T="T";
+	 String P="P";
+	 String TRAMITADO="Tramitado";
+	 String PENDIENTE_ENTREGAF="F-";
+	 String PENDIENTE_ENTREGAC="C-";
+	 String CONTROL="CONTROL";
+	 String FACTURA="FACTURA";
+	 String NO_HAY_DATA="1";
+	 String PAGOSCONSULTA="6";
+	 String EDADIN ="EDADIN";
+	 String EDADFI="EDADFI";
+	 String CHECKED =" checked ";
+	 String CERO="0";
+	 String MONEDA = "044";
+	 String DBS = "DBS";
+	 int EDAD_ESPECIAL=8;
+	 String tipoEduc="Especial";	 
+	 String ACTIVO_EMPLEADO="A";	 
+     String VACACION_EMPLEADO="V";
+     String EGRESADO_EMPLEADO="E";
+     String SUSPENDIDO_EMPLEADO="S";
+     String EMPLEADO_SIN_SOLICITUD="O";
+     String REPORTE_BENEFSOCIOECONOMICOTOPAGOTRIBUTO_TRANS="0";
+     String REPORTE_BENEFSOCIOECONOMICOTOPAGOTRIBUTO_DEF="1";
+ 	/**filtrarByMesOrComplementoOrAmbos: 0 es matricla , 1 es reembolso y 2 es ambos**/
+     String FILTRARBYMESORCOMPLEMENTOORAMBOS_MATRICULA="0";
+     String FILTRARBYMESORCOMPLEMENTOORAMBOS_REEMBOLSO="1";
+     String FILTRARBYMESORCOMPLEMENTOORAMBOS_AMBOS="2";
+     String FORMATO_DOUBLE="#,##0.00";
+     String  IN_COMPLEMENTO="S";
+     String  NO_IN_COMPLEMENTO="N";
+     String NO_PAGADO="0";
+     String PAGADO="1";
+     String PAGADO_NOPAGADO_AMBOS="2";
+     String NUMCT1="numCt1";	
+     String NUMCT2="numCt2";
+     String CORADM="CORADM";
+     String CORCON="CORCON";
+     String CORBEN="CORBEN";
+     String FIRMA="FIRMA";
+     String FIRREP="FIRREP";
+     String departamentofirma="departamentofirma";
+     Double campoDoubleNoSeNecesitaMas=-1d;
+     String FORMA_PAGO_AMBOS="3";
+     String CODIGO_COMPANIA="01";
+     String URL_COMPLEMENTO="URL_COMPLEMENTO";
+     
+	 
+}

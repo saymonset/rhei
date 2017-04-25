@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteMei9" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="10" bottomMargin="20" isSummaryNewPage="true" isSummaryWithPageHeaderAndFooter="true" uuid="e8a82ec5-210c-4fb3-847d-408354c24cfb">
+	<property name="ireport.zoom" value="1.5026296018031553"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\simon\\workspace\\rhei\\src\\ve\\org\\bcv\\rhei\\report\\by\\benef\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="beneficiarios" class="java.util.List"/>
+	<field name="formatoPeriodo" class="java.lang.String"/>
+	<field name="cedulaTrab" class="java.lang.Integer"/>
+	<field name="nombrTrab" class="java.lang.String"/>
+	<field name="apellidoTrab" class="java.lang.String"/>
+	<field name="compania" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<sortField name="formatoPeriodo"/>
+	<sortField name="cedulaTrab"/>
+	<variable name="vmontobcv" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{vmontobcv}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="0" width="197" height="68" forecolor="#000099" uuid="cc6fbded-4c7e-4f3b-9f47-0ca6c75fb762"/>
+				<textElement textAlignment="Left">
+					<font size="54"/>
+				</textElement>
+				<text><![CDATA[BCV]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="103" y="70" width="382" height="20" forecolor="#000099" uuid="168e8ecb-0bcb-4002-8b18-cd4b25262946"/>
+				<box leftPadding="5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RELACIÓN DE PAGOS POR CENTRO DE EDUCACIÓN INICIAL"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="491" y="7" width="56" height="15" uuid="91e1c495-8d1d-4702-a122-bcbad00152f1"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pág. "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="547" y="7" width="10" height="15" uuid="0d996b19-de3c-4981-9204-ea969bfc5b96"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="426" y="22" width="77" height="15" forecolor="#000099" uuid="e2043a5f-f411-478e-9c24-c0a0514d1751"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[Fecha Impresión:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="502" y="22" width="55" height="15" uuid="948e6e9b-7a81-44c9-b5e4-3ed8f0e56542"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="h:mm:ss a">
+				<reportElement x="502" y="37" width="55" height="15" uuid="552ada87-9808-4015-b39c-abe94e74b98d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="426" y="37" width="77" height="15" forecolor="#000099" uuid="f2913f67-dabd-4cfa-8ce3-11b386bcfbe0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<text><![CDATA[Hora Impresión:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="121" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="572" height="96" isRemoveLineWhenBlank="true" forecolor="#000099" backcolor="#FFFFFF" uuid="128f1e1c-7e97-4a3a-acda-d656ec8045a9"/>
+			</rectangle>
+			<subreport>
+				<reportElement x="0" y="100" width="557" height="20" uuid="8c2f0ad9-5a76-47cb-86c5-41467e2f2f4c"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{beneficiarios})]]></dataSourceExpression>
+				<returnValue subreportVariable="vmontobcv" toVariable="vmontobcv" calculation="Sum"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reportBenefDatosBenef2.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="4" y="2" width="94" height="15" forecolor="#000099" uuid="4ee410fa-3fb1-4744-9ba8-0123f0fb6145"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Datos del Trabajador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="16" y="21" width="69" height="15" forecolor="#000099" uuid="2bde3d34-7dfb-46f7-80df-4d749cf13f1f"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido: ]]></text>
+			</staticText>
+			<textField evaluationTime="Auto">
+				<reportElement x="85" y="21" width="122" height="15" uuid="58f8edf8-1985-4b4b-b081-498b7767d3bd"/>
+				<box leftPadding="5" rightPadding="0">
+					<topPen lineWidth="0.0" lineColor="#000FFF"/>
+					<rightPen lineWidth="0.0" lineColor="#000FFF"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellidoTrab}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="16" y="48" width="69" height="15" forecolor="#000099" uuid="4946f476-6aba-4865-9b67-f9048e6316e2"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre: ]]></text>
+			</staticText>
+			<textField evaluationTime="Auto">
+				<reportElement x="85" y="48" width="122" height="15" uuid="ed23014f-3d9f-45f5-bdf6-9aeeea4db410"/>
+				<box leftPadding="5" rightPadding="0">
+					<topPen lineWidth="0.0" lineColor="#000FFF"/>
+					<rightPen lineWidth="0.0" lineColor="#000FFF"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombrTrab}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="16" y="75" width="69" height="15" forecolor="#000099" uuid="7545877e-8585-4db5-b985-6974ce4dbfc7"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cédula: ]]></text>
+			</staticText>
+			<textField evaluationTime="Auto" pattern="#,##0">
+				<reportElement x="85" y="75" width="122" height="15" uuid="d2834f4c-6e5b-496f-9448-0ba57fb5d23a"/>
+				<box rightPadding="5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cedulaTrab}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="319" y="21" width="74" height="15" forecolor="#000099" uuid="c36673d6-916c-418c-b889-1af1a7bbc164"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Compañía: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="48" width="75" height="15" forecolor="#000099" uuid="2fb7bb61-9fd9-4a63-ad06-9f8a90e741c6"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo Trabajador: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="75" width="75" height="15" forecolor="#000099" uuid="8d9497c8-d7b3-46d9-aa64-7fa82b50208f"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Período Escolar: ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="394" y="75" width="97" height="15" uuid="d028092b-ef69-4f64-b666-8b2eb79ce1f2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{formatoPeriodo}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement x="394" y="48" width="92" height="15" uuid="20172c35-2fff-49d0-9ff5-32f0322af70b"/>
+				<box leftPadding="5" rightPadding="0">
+					<topPen lineWidth="0.0" lineColor="#000FFF"/>
+					<rightPen lineWidth="0.0" lineColor="#000FFF"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto">
+				<reportElement x="394" y="21" width="96" height="15" uuid="09c2c4c9-8362-4af3-a4ee-45166dab7845"/>
+				<box leftPadding="5" rightPadding="0">
+					<topPen lineWidth="0.0" lineColor="#000FFF"/>
+					<rightPen lineWidth="0.0" lineColor="#000FFF"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{compania}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

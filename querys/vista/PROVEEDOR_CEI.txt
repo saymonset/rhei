@@ -1,0 +1,32 @@
+DROP VIEW RHEI.PROVEEDOR_CEI;
+
+/* Formatted on 03/02/2016 01:28:59 p.m. (QP5 v5.163.1008.3004) */
+CREATE OR REPLACE FORCE VIEW RHEI.PROVEEDOR_CEI
+(
+   NU_RIF_PROVEEDOR,
+   NB_PROVEEDOR,
+   IN_ACTIVO,
+   NU_TELEFONO1,
+   NU_TELEFONO2,
+   NU_FAX,
+   DI_PROVEEDOR,
+   TX_E_MAIL,
+   NB_PERS_CONTACTO,
+   IN_LOCALIDAD_BCV
+)
+AS
+     SELECT a.nu_rif_proveedor,
+            a.nb_proveedor,
+            a.in_activo,
+            a.nu_telefono1,
+            a.nu_telefono2,
+            a.nu_fax,
+            a.di_proveedor,
+            a.tx_e_mail,
+            ' ' AS nb_pers_contacto,
+            a.in_localidad_bcv
+       FROM sacp.proveedor@desa1 A
+   ORDER BY nb_proveedor ASC;
+
+
+GRANT SELECT ON RHEI.PROVEEDOR_CEI TO ROLRHEI_ANALISTA;

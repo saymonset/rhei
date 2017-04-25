@@ -1,0 +1,70 @@
+ALTER TABLE RHEI.BENEFICIO_ESCOLAR
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE RHEI.BENEFICIO_ESCOLAR CASCADE CONSTRAINTS;
+
+CREATE TABLE RHEI.BENEFICIO_ESCOLAR
+(
+  CO_TIPO_BENEFICIO  VARCHAR2(4 CHAR)           NOT NULL,
+  TX_BENEFICIO       VARCHAR2(200 CHAR)         NOT NULL,
+  FE_REGISTRO        DATE                       NOT NULL,
+  IN_STATUS          VARCHAR2(1 CHAR)           DEFAULT 'A'                   NOT NULL
+)
+TABLESPACE TSDATA01_128K
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+COMPRESS FOR OLTP 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE RHEI.BENEFICIO_ESCOLAR IS 'Contiene información de los tipos de beneficios escolares definidos Suministrada por la Coordinación Funcional de Recursos Humanos.Tiene como finalidad clasificar los beneficios escolaresLa información registrada  proviene de las propuestas generadas por la Coordinación Funcional de Recursos Humanos.Su actualización se realiza semestraln veces en el semestre a ejecutarNo es Interfaz.';
+
+COMMENT ON COLUMN RHEI.BENEFICIO_ESCOLAR.CO_TIPO_BENEFICIO IS 'Contiene el codigo que identifica al tipo de beneficio que define el parámetro. Proveniente del Sistema Integral de Recursos Humanos.Con el objetivo de codificar los tipos de beneficios que define el parámetro.Conformado por una cadena de 4 carateres.informacion recibida a traves del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.BENEFICIO_ESCOLAR.TX_BENEFICIO IS 'Contiene información sobre el uso del beneficio.Proveniente del Sistema Integral de Recursos Humanos.Con la finalidad de informar sobre el beneficio. Conformado por una cadena de hasta 200 carateres.Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.BENEFICIO_ESCOLAR.FE_REGISTRO IS 'Contiene la información sobre cuando fue registrado el beneficio en la base de datos.Proveniente del Sistema Integral de Recursos Humanos.Con la finalidad de llevar un control sobre la puesta en vigencia de un beneficio. Está constituido por un timestamp (fecha hora).Información recibida a través del S.I.R.H.';
+
+COMMENT ON COLUMN RHEI.BENEFICIO_ESCOLAR.IN_STATUS IS 'Contiene información sobre el estatus o condición del beneficio.Proveniente del Sistema Integral de Recursos Humanos.Con la finalidad de indicar el status o condición del beneficio. Los posibles valores son: A para indicar que el beneficio está activo e I para indicar que el beneficio se encuentra inactivo. Por defecto el valor es Activo (A).Información recibida a través del S.I.R.H.';
+
+
+
+CREATE UNIQUE INDEX RHEI.PK_BENEFICIO_ESCOLAR ON RHEI.BENEFICIO_ESCOLAR
+(CO_TIPO_BENEFICIO)
+NOLOGGING
+TABLESPACE TSINDX01_128K
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+ALTER TABLE RHEI.BENEFICIO_ESCOLAR ADD (
+  CONSTRAINT CHK_IN_STA_BENE
+  CHECK (IN_STATUS in ('A','I')),
+  CONSTRAINT PK_BENEFICIO_ESCOLAR
+  PRIMARY KEY
+  (CO_TIPO_BENEFICIO)
+  USING INDEX RHEI.PK_BENEFICIO_ESCOLAR);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON RHEI.BENEFICIO_ESCOLAR TO ROLRHEI_ANALISTA;

@@ -1,0 +1,78 @@
+ALTER TABLE RHEI.RECAUDO
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE RHEI.RECAUDO CASCADE CONSTRAINTS;
+
+CREATE TABLE RHEI.RECAUDO
+(
+  CO_RECAUDO        NUMBER(10)                  NOT NULL,
+  NB_DOCUMENTO      VARCHAR2(100 BYTE),
+  TX_DOCUMENTO      VARCHAR2(1000 BYTE),
+  IN_OBLIGATORIO    CHAR(1 BYTE),
+  IN_ALFRESCO       CHAR(1 BYTE),
+  DI_HOME_ALFRESCO  VARCHAR2(100 BYTE)
+)
+TABLESPACE TSDATA01_128K
+PCTUSED    0
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+COMMENT ON TABLE RHEI.RECAUDO IS 'Contiene informaci¢n de la lista de documentos que va a contener cada usuario en la documentacion de Alfresco';
+
+COMMENT ON COLUMN RHEI.RECAUDO.CO_RECAUDO IS 'Contiene  informaci¢n del id de la tabla recaudos ';
+
+COMMENT ON COLUMN RHEI.RECAUDO.NB_DOCUMENTO IS 'Contiene  informaci¢n del nombre del recaudo';
+
+COMMENT ON COLUMN RHEI.RECAUDO.TX_DOCUMENTO IS 'Contiene  informaci¢n de la descripcion del recaudo ';
+
+COMMENT ON COLUMN RHEI.RECAUDO.IN_OBLIGATORIO IS 'Contiene informaci¢n de indicador que refleja Si el registro es obligatorio. Tipo CHAR';
+
+COMMENT ON COLUMN RHEI.RECAUDO.IN_ALFRESCO IS 'Contiene informaci¢n de indicador que refleja Si el registro est  en ALFRESCO. Tipo CHAR';
+
+COMMENT ON COLUMN RHEI.RECAUDO.DI_HOME_ALFRESCO IS 'Contiene informaci¢n del home de alfresco ';
+
+
+
+CREATE UNIQUE INDEX RHEI.PK_RECAUDO ON RHEI.RECAUDO
+(CO_RECAUDO)
+LOGGING
+TABLESPACE TSINDX01_128K
+PCTFREE    10
+INITRANS   2
+MAXTRANS   255
+STORAGE    (
+            INITIAL          128K
+            NEXT             128K
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            BUFFER_POOL      DEFAULT
+           )
+NOPARALLEL;
+
+
+ALTER TABLE RHEI.RECAUDO ADD (
+  CONSTRAINT CHK_IN_ALFRESCO
+  CHECK (IN_ALFRESCO is null or (IN_ALFRESCO in ('S','N'))),
+  CONSTRAINT CHK_IN_OBLIGATORIO
+  CHECK (IN_OBLIGATORIO is null or (IN_OBLIGATORIO in ('S','N'))),
+  CONSTRAINT PK_RECAUDO
+  PRIMARY KEY
+  (CO_RECAUDO)
+  USING INDEX RHEI.PK_RECAUDO);
+
+GRANT DELETE, INSERT, SELECT, UPDATE ON RHEI.RECAUDO TO ROLRHEI_ANALISTA;
